@@ -1,0 +1,93 @@
+{extend name="layout/base" /}
+{block name="title"}{$category[0]['seo_name']}-安徽自考网{/block}
+{block name="keywords"}{$category[0]['keyword']}{/block}
+{block name="description"}{$category[0]['describe']}{/block}
+{block name="css"}
+	<link rel="stylesheet" href="{:getDoman()}/css/gong.css">
+	<link rel="stylesheet" href="{:getDoman()}/css/list_1.css">
+	<meta itemprop="image" content="{:getDoman()}{$category[0]['cover_id']|get_picture_url}"/>
+{/block}
+{block name="content"}
+<div id="list_weizhi">
+    <div id="list_weizhi_1"></div>
+    <div id="list_weizhi_2">当前位置：<a href="{:getDoman()}" target="_self">安徽自考网</a>><a href="{:getDoman()}{:url('index/index/lanmu',['id'=>$category[0]['id']])}" target="_self">{$category[0]['seo_name']}</a></div>
+</div>
+<div id="list_di1hang">
+    <div id="list_di1hang_left"><img src="{:getDoman()}{$category[0]['cover_id']|get_picture_url}" alt="{$category[0]['seo_name']}" /></div>
+    <div id="list_di1hang_right">
+        <h1>{$category[0]['seo_name']}</h1>
+        <p class="list_jianjie1">{$category[0]['describe']}</p>
+    </div>
+</div>
+<div id="list_di2hang">
+    <div id="list_di2hang_left">
+    	<!--内容区域开始-->
+        {volist name="list" id="vo"}
+        	<div class="list_di2hang_left1">
+        		<h2 class="title2">
+        			<a href="{:getDoman()}{:url('index/index/lanmu',['id'=>$vo['id']])}"  title="{$vo.seo_name}">{$vo.category_name}</a>
+        		</h2>
+        		<p class="list_di2hang_leftp1"><a href="{:getDoman()}{:url('index/index/lanmu',['id'=>$vo['id']])}">更多></a></p>
+        		<div class="list_di2hang_lefttu">
+                    {volist name="$vo.item" id="v1" key="k" offset="0" length='3' }
+        			    <a href="{:getDoman()}{:url('index/index/info',['id'=>$v1['id']])}" title="{$v1.name}">
+                          <img src="{:getDoman()}{$v1.cover_id|get_picture_url}" alt="{$v1.name}" />
+                          <span class="list1nr1">{$v1.name}</span>
+                        </a>
+                    {/volist}
+        		</div>
+        		<div class="list_di2hang_leftnr">
+        			<ul>
+                        {volist name="$vo.item" id="v2" key="k" start="0" length='13'}
+            				{if condition="$k eq 4"}
+                                <li>
+                                    <i class="icon pos{$k}"></i>
+                                    <h3><a href="{:getDoman()}{:url('index/index/info',['id'=>$v2['id']])}" class="list1nr2" title="{$v2.name}">{$v2.name}</a></h3>
+                                    <p>{$v2.describe|mb_substr=0,38,'utf-8'}...</p>
+                                </li>
+                            {else/}
+                                {if condition="$k gt 4"}
+                                    <li>
+                                      <i class="icon pos{$k}"></i>
+                                      <a href="{:getDoman()}{:url('index/index/info',['id'=>$v2['id']])}" class="list1nr3" title="{$v2.name}">{$v2.name}</a>
+                      				</li>
+                                {/if}
+                            {/if}
+                        {/volist}
+        			</ul>
+        		</div>
+        	</div>
+        {/volist}
+    	<!--内容区域结束-->
+    </div>
+	{block name="right_menu"}{__block__}{/block}
+</div>
+{/block}
+{block name="script"}
+{__block__}
+<script type="text/javascript" charset="UTF-8" src="http://scripts.easyliao.com/8841/28397.js"></script>
+<script type="text/javascript" src="{:getDoman()}/js/index.js"></script>
+<script type="text/javascript" src="{:getDoman()}/js/jquery-2.0.3.min.js"></script>
+<script>
+	$.get("/getTestTime",{},function(result){
+
+		if(result!=null){
+			$(".getTestTime_date").html('考试时间:'+result.date1);
+			$("#getTestTimeDay").html(result.day1);
+		}
+    },'JSON');
+	
+	$.get("/registration_time",{},function(result){
+		if(result!=null){
+			$(".registration_time_date").html('报名时间:'+result.date);
+			$("#registrationDay").html(result.day);
+		}
+    },'JSON');
+</script>
+<script type="text/javascript">
+    wordlimit('list1nr1',9);
+    wordlimit('list1nr2',18);
+    wordlimit('list1nr3',21);
+</script>
+
+{/block}

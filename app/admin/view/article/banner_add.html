@@ -1,0 +1,33 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>图片标题</label>
+              <span>（请输入图片标题）</span>
+              <input class="form-control" name="title" placeholder="请输入图片标题" type="text">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>URL地址</label>
+              <span>（请输入URL地址）</span>
+              <input class="form-control" name="url" placeholder="请输入图片链接地址" type="text">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>封面图片</label>
+                <span class="">（请上传单张封面图片）</span>
+                <br/>
+                {:widget('file/index', ['name' => 'cover_id', 'value' => $cover_id, 'type' => 'img'])}
+            </div>
+          </div>   
+        </div>
+      </div>
+      <div class="box-footer">
+        {include file="layout/edit_btn_group"/}
+      </div>
+    </div>
+</form>

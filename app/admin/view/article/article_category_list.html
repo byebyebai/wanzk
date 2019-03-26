@@ -1,0 +1,115 @@
+<style type="text/css">
+  .cate_list th,td{
+    text-align: center;
+  }
+  .add_list{ 
+    
+  }
+</style>
+<div class="box">
+  <div class="box-header">
+        <ob_link><a href="{:url('articleCategoryAdd',['pid'=>$Request.param.pid])}" class="btn"><i class="fa fa-plus"></i> 新 增</a></ob_link>
+        <a class="btn" id="getIds">栏目静态化</a>
+  </div>
+  <div class="box-body table-responsive">
+    <table  class="table table-bordered table-hover cate_list">
+      <thead>
+      <tr>
+      		<th class="checkbox-select-all">
+              <label>
+                <input class="flat-grey js-checkbox-all" type="checkbox">
+              </label>
+          </th>
+          <th>分类id</th>
+          <th>名称</th>
+          <th>描述</th>
+          <th>排序</th>
+          <th>siteMap</th>
+          <th>操作</th>
+      </tr>
+      </thead>
+      
+      {notempty name='list'}
+        <tbody class="category_list">
+            {volist name='list' id='vo'}
+                <tr>
+                	<td>
+                    <label>
+                        <input class="flat-grey" type="checkbox" name="ids" value="{$vo.id}">
+                    </label>
+                  </td>
+                  <td>{$vo.id}</td>
+                  <td>{$vo.name}</td>
+                  <td>{$vo.describe|mb_substr=0,15,'utf-8'}</td>
+                  <td><input type="text" class="sort-th sort-text" href="{:url('setCategorySort')}" id="{$vo.id}" value="{$vo.sort}" /></td>
+                  <td>{if condition="$vo.isShow eq 1"}<a href="javascript:void(0);" onclick="setCategoryIsShow(0,{$vo.id});" class="btn  btn-primary">显示</a>{else }<a href="javascript:void(0);" onclick="setCategoryIsShow(1,{$vo.id});" class="btn btn-danger">隐藏</a>{/if}</td>
+                  <td class="col-md-2 text-center">
+                      <a href="{:url('articleCategoryList',array('pid' => $vo['id']))}" class="btn"><i class="fa fa-reorder"></i> 子菜单</a>
+                      <ob_link><a href="{:url('articleCategoryEdit', array('id' => $vo['id']))}" class="btn"><i class="fa fa-edit"></i> 编辑</a></ob_link>
+                      <ob_link><a class="btn confirm ajax-get"  href="{:url('articleCategoryDel', array('id' => $vo['id']))}"><i class="fa fa-trash-o"></i> 删除</a></ob_link>
+                  </td>
+                </tr>
+            {/volist}
+        </tbody>
+        {else/}
+        <tbody><tr class="odd"><td colspan="4" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+      {/notempty}
+    </table>
+  </div>
+
+</div>
+<script>
+	function setCategoryIsShow(id,cid){
+		$.post("{:url('article/setCategoryIsShow')}",{id:id,cid:cid},function(e){
+			if(e.status == 1){
+				location.reload();
+			}else{
+				alert('操作失败');
+			}
+		},'JSON')
+	}
+	$("#getIds").click(function(){
+		var checkID = [];//定义一个空数组
+  
+    $("input[name='ids']:checked").each(function(i){
+      checkID[i] =$(this).val();
+		});
+  	$.post("{:url('article/lanmuStatic')}",{checkID:checkID},function(e){
+  		if(e.status == 1){
+			doLanmuStatic();
+  		}
+		},'JSON')
+	})
+	
+	function doLanmuStatic(index = 0){
+  		$.post("{:url('article/doLanmuStatic')}",{index:index},function(e){
+
+				if(e.status == 2){
+					var status = toStatic(e.url)
+					if(status == 1){
+						doLanmuStatic(e.index);
+					}
+				}
+				if(e.status == 1){
+					alert(e.msg);
+				}
+  		},'json')
+  }
+	var result = 0;
+	function toStatic(surl = ''){
+		
+		$.ajax({
+        data: "get",
+        url: "{:getDoman()}/index/static_lanmu",
+        data: "surl=" + surl,
+        async: false,
+        dataType : "json", //返回数据形式为json
+        success: function (e) {
+            if(e.status == 1){
+							result = e.status
+						}
+        }
+    })
+		return result;
+	}
+</script>

@@ -1,0 +1,283 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-7">
+            <div class="form-group">
+              <label>标题</label>
+              <span class="">（文章标题名称）</span>
+              <input class="form-control article"{notempty name="$info['title_color']" }{if condition="$info['title_color'] neq ''"}style="color:{$info['title_color']}"{/if}{/notempty} name="name" style="position: relative;" placeholder="请输入文章标题名称" value="{$info['name']|default=''}" type="text">
+              <a href="javascript:void(0);" class="paigusu" style="padding:5px 10px;background: #fff;border:1px solid #ccc;border-radius:4px; position: absolute;right: 15px;top: 26px; color:#333;">调色板</a>
+              <input type="hidden" class="title_color" name="title_color" value="{$info['title_color']|default=''}">
+            </div>
+          </div>
+            
+          <div class="col-md-7">
+            <div class="form-group" id="category">
+              <label>分类</label>
+              <span class="">（文章分类）</span>
+              <select name="category_id" class="form-control getcategory">
+                  {volist name='article_category_list' id='vo'}
+                    <option value="{$vo['id']}" {notempty name="info['category_id']"}{if condition="$info['category_id'] eq $vo['id']"} selected="selected" {/if}{/notempty} >父级栏目：{$vo['name']}</option>
+                  {/volist}
+              </select>
+              <!-- 第二级 -->
+               <select class="form-control getcategory1" {notempty name="$category[1]"} style="display: block;" {else /} style="display: none;"{/notempty}>
+                  {volist name='article_category_list' id='vo'}
+                    <option value="{$vo['id']}" {notempty name="$category[1]"}{if condition="$category[1]['id'] eq $vo['id']"} selected="selected" {/if}{/notempty} >父级栏目：{$vo['name']}</option>
+                  {/volist}
+              </select>
+              <!-- 第三级 -->
+              <select class="form-control getcategory2" {notempty name="$category[0]"} style="display: block;" {else /} style="display: none;" {/notempty}>
+                    {volist name='article_category_list' id='vo'}
+                      <option value="{$vo['id']}" {notempty name="$category[0]"}{if condition="$category[0]['id'] eq $vo['id']"} selected="selected" {/if}{/notempty} >父级栏目：{$vo['name']}</option>
+                    {/volist}
+              </select>
+            </div>
+          </div>
+            
+          <div class="col-md-7">
+            <div class="form-group">
+                <label>描述</label>
+                <span class="">（控制在160字）</span>
+                <textarea class="form-control" name="describe" rows="3" placeholder="请输入文章描述信息/简介">{$info['describe']|default=''}</textarea>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="form-group">
+                <label>短标题</label>
+                <span class="">（seo短标题）</span>
+                <input class="form-control" name="seo_title" placeholder="请输入短标题" value="{$info['seo_title']|default=''}" type="text">
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="form-group">
+                <label>关键词</label>
+                <span class="">（seo关键词）</span>
+                <input class="form-control" name="seo_keys" placeholder="请输入关键词" value="{$info['seo_keys']|default=''}" type="text">
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="form-group">
+                <label>tag标签</label>
+                <span class="">（多个标签请用,隔开）</span>
+                <input class="form-control" name="tag_name" placeholder="例如：某某学校,某某专业" value="{$info['tag_name']|default=''}" type="text">
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="form-group">
+                <label>发布时间</label>
+                <span class="">（自己定义）</span>
+                <input class="form-control" name="add_time" placeholder="请输入发布时间" value="{$info['add_time']|default=date('Y-m-d',time())}" type="text">
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="form-group">
+                <label>起始点击量</label>
+                <span class="">（自己定义）</span>
+                <input class="form-control" name="hits" placeholder="请输入点击量" onchange="if(/\D/.test(this.value)){alert('点击量请输入正整数');}" value="{$info['hits']|default='233'}" type="text">
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="form-group">
+                <label>文章来源</label>
+                <span class="">（自己定义） </span>
+                <input class="form-control" name="origin" placeholder="请输入文章来源" value="{$info['origin']|default=$Think.domain}" type="text">
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <div class="form-group">
+                <label>封面图片</label>
+                <span class="">（请上传单张封面图片）</span>
+                <br/>
+                {assign name="cover_id" value="$info.cover_id|default='0'" /}
+                {:widget('file/index', ['name' => 'cover_id', 'value' => $cover_id, 'type' => 'img'])}
+            </div>
+          </div>
+          
+          <div class="col-md-7">
+            <div class="form-group zhuanye" style="display: none;">
+                <label>专业代码</label>
+                <span class="">（自己定义）</span>
+                <input class="form-control" name="zhuanye_code" placeholder="000100" value="{$info['zhuanye_code']|default=''}" type="text">
+            </div>
+          </div>
+
+          <div class="col-md-7 zhuanye" style="display: none;">
+            <div class="form-group">
+                <label>专业层次</label>
+                <span class="">（专科 本科）</span>
+                <select name="zhuanye_level" class="form-control">
+                	<option value="专科" {if isset($info.zhuanye_level)}{if condition="$info.zhuanye_level eq '专科'"}selected{/if}{/if}>专科</option>
+                	<option value="本科" {if isset($info.zhuanye_level)}{if condition="$info.zhuanye_level eq '本科'"}selected{/if}{/if}>本科</option>
+                </select> 	
+            </div>
+          </div>
+		  <div class="col-md-7 zhuanye" style="display: none;">
+            <div class="form-group">
+                <label>专业类别</label>
+                <span class="">（专业类别）</span>
+                <select name="subject" class="form-control">                	    
+                	<option value="经管类" {if isset($info.subject)}{if condition="$info.subject eq '经管类'"}selected{/if}{/if}>经管类</option>
+                	<option value="法学类" {if isset($info.subject)}{if condition="$info.subject eq '法学类'"}selected{/if}{/if}>法学类</option>
+                	<option value="教育类" {if isset($info.subject)}{if condition="$info.subject eq '教育类'"}selected{/if}{/if}>教育类</option>
+                	<option value="理工类" {if isset($info.subject)}{if condition="$info.subject eq '理工类'"}selected{/if}{/if}>理工类</option>
+                	<option value="文史类" {if isset($info.subject)}{if condition="$info.subject eq '文史类'"}selected{/if}{/if}>文史类</option>
+                	<option value="医学类" {if isset($info.subject)}{if condition="$info.subject eq '医学类'"}selected{/if}{/if}>医学类</option>
+                	<option value="艺术类" {if isset($info.subject)}{if condition="$info.subject eq '艺术类'"}selected{/if}{/if}>艺术类</option>
+                	<option value="农学类" {if isset($info.subject)}{if condition="$info.subject eq '农学类'"}selected{/if}{/if}>农学类</option>
+                </select>
+            </div>
+          </div>
+          </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+                <label>文章内容</label>（<span style="color:red;">*超链接必须为http://或https://前缀的绝对路径）<span>
+                <textarea class="form-control textarea_editor" name="content" id="contents" placeholder="请输入文章内容">{$info['content']|default=''}</textarea>
+                {:widget('editor/index', array('name'=> 'content','value'=> ''))}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+                <label>添加附件</label>
+                <span class="">（上传文件）</span>
+                <input type="file" id="fileUpload" value="选择上传文件" />
+                <input type="hidden" name="append" id="append" value="" />
+            </div>
+          </div>
+        </div>
+      <div class="box-footer">
+          
+        <input type="hidden" name="id" value="{$info['id']|default='0'}"/>
+        
+        {include file="layout/edit_btn_group"/}
+        
+      </div>
+        
+      </div>
+      </div>
+</form>
+
+<script src="__STATIC__/module/admin/js/paigusu.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+ 
+		// 检测是否选择文件，如果选择，返回文件对象;如果没选择，返回false
+		function checkFile(){
+			// 获取文件对象(该对象的类型是[object FileList]，其下有个length属性)
+			var fileList = $('#fileUpload')[0].files;
+			
+			// 如果文件对象的length属性为0，就是没文件
+			if (fileList.length === 0) {
+				console.log('没选择文件');
+				return false;
+			};
+			return fileList[0];
+		};
+ 
+		// 文件选择成功，显示文件名称
+		$('#fileUpload').change(function(){
+			
+			var file = checkFile();
+			if (!file) {
+				return false;
+			};
+			// 构建form数据
+			var formFile = new FormData();
+            //把文件放入form对象中  
+            formFile.append("file", file); 
+            // ajax提交
+            $.ajax({
+            	url: "{:url('article/uploadFile')}",
+               	data: formFile,
+               	type: "POST",
+               	dataType: "json",
+               	cache: false,			//上传文件无需缓存
+               	processData: false,		//用于对data参数进行序列化处理 这里必须false
+               	contentType: false, 	//必须
+               	success: function(result){
+               		if(result.error == '0'){
+               			$("#append").val(result.url);
+               		}
+               	},
+               	error: function(result){
+               		alert('上传失败');
+               	}
+            });
+
+		});
+
+	})
+</script>
+<script type="text/javascript">
+	
+  var category_id = $("select[name='category_id'] option:selected").val();
+  isShow(category_id);
+  $(".getcategory").change('click',function(){
+      category_id = $(this).val();
+      isShow(category_id);
+  })
+  function isShow(category_id){
+    if(category_id == 8){
+      $('.zhuanye').show();
+    }else{
+      $('.zhuanye').hide();
+    }
+  }
+  //第一次选中
+  $('#category .getcategory').change('click',function(){
+    var id = $(this).val();
+    addSelect(id);
+  })
+  $('#category .getcategory1').change('click',function(){
+    var id = $(this).val();
+    addSelect1(id);
+  })
+  function addSelect(id){
+    $.post("{:url('article/getCategoryCid')}",{"id":id },
+      function(data){
+        //栏目二显示
+        $(".getcategory1").fadeIn();
+        if(data.status == 1){
+          var html = '';
+          html += '<option value="" disabled="disabled" >选择二级栏目</option>'
+          for(var i = 0;i<data.data.length;i++){
+            html += '<option value="'+data.data[i].id+'" >二级栏目：'+data.data[i].name+'</option>'
+          }
+          $("#category .getcategory").attr("name",'');
+          $('#category .getcategory1').html(html);
+          $("#category .getcategory1").attr("name",'category_id');
+          
+        }else{
+          $('#category .getcategory1').hide();
+          $('#category .getcategory2').hide();
+          $("#category .getcategory2").attr("name",'');
+          $("#category .getcategory").attr("name",'category_id');
+        }
+      },"json");
+  }
+  function addSelect1(id){
+    $.post("{:url('article/getCategoryCid')}",{"id":id },
+      function(data){
+        $(".getcategory2").fadeIn();
+        if(data.status == 1){
+          var html = '';
+          html += '<option value="" disabled="disabled">选择三级栏目</option>'
+          for(var i = 0;i<data.data.length;i++){
+            html += '<option value="'+data.data[i].id+'" >三级栏目： '+data.data[i].name+'</option>'
+          }
+          $("#category .getcategory1").attr("name",'');
+          $('#category .getcategory2').html(html);
+          $("#category .getcategory2").attr("name",'category_id');
+
+        }else{
+          $('#category .getcategory2').hide();
+          $("#category .getcategory1").attr("name",'category_id');
+        }
+      },"json");
+  }
+</script>

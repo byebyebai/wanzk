@@ -1,0 +1,78 @@
+{extend name="layout/base" /}
+{block name="title"}{$category[0]['seo_name']}-安徽自考网{/block}
+{block name="keywords"}{$category[0]['keyword']}{/block}
+{block name="description"}{$category[0]['describe']}{/block}
+{block name="css"}
+	<link rel="stylesheet" href="{:getDoman()}/css/gong.css">
+	<link rel="stylesheet" href="{:getDoman()}/css/list_2.css">
+	<meta itemprop="image" content="{:getDoman()}{$category[0]['cover_id']|get_picture_url}"/>
+{/block}
+{block name="content"}
+<div id="list_weizhi">
+    <div id="list_weizhi_1"></div>
+    <div id="list_weizhi_2">当前位置：
+    	<a href="{:getDoman()}" class="blue" target="_self">安徽自考网</a>>
+    	{if !isset($parent_category)}<a href="{:getDoman()}{:url('index/index/lanmu',['id'=>$parent_category[0]['id']])}" target="_self">{$parent_category[0]['seo_name']}</a>>{/if}
+    	<a href="{:getDoman()}{:url('index/index/lanmu',['id'=>$category[0]['id']])}" target="_self">{$category[0]['seo_name']}</a>
+    </div>
+</div>
+<div id="list2_zhubox">
+    <div id="list2_zhubox_s">
+        <div id="list2_di1hang">
+            <div id="list2_di1hang_left"><img src="{:getDoman()}{$category[0]['cover_id']|get_picture_url}" alt="{$category[0]['seo_name']}" /></div>
+            <div id="list2_di1hang_right">
+        		<h1>{$category[0]['seo_name']}</h1>
+        		<p id="list2_jianjie1">{$category[0]['describe']}</p>
+    		</div>
+		</div>
+ 	</div>
+    <div id="list2_zhubox_x">
+        {notempty name='article_list'} 
+        <div id="list2_zhubox_x_left">
+            <ul class="ul">
+                {volist name="article_list" id="vo"}
+                    <li>
+                        <div class="list2_zhubox_bt">
+                            <h2><a href="{:getDoman()}{:url('index/index/info',['id'=>$vo['id']])}">{$vo.name}</h2></a>
+                        	<span class="list2_zhubox_bt_sj">{$vo.add_time|mb_substr=0,10,'utf-8'}</span>
+                        </div>
+                        <p class="list2_zhubox_jj">
+                            <span class="content_box">{$vo.describe}</span>
+                            <span class="list2_zhubox_bt_ckxq"><a href="{:getDoman()}{:url('index/index/info',['id'=>$vo['id']])}">[查看详情]</a></span>
+                        </p>
+                    </li>
+                {/volist}
+            </ul>
+            <div class="page-render">
+            	{$article_list->render()}
+        	</div>
+        </div>
+        {/notempty}
+        {block name="right_menu"}{__block__}{/block}
+    </div>
+</div>
+{/block}
+{block name="script"}
+{__block__}
+<script type="text/javascript" charset="UTF-8" src="http://scripts.easyliao.com/8841/28397.js"></script>
+<script type="text/javascript" src="{:getDoman()}/js/jquery-2.0.3.min.js"></script>
+<script>
+	$.get("/getTestTime",{},function(result){
+
+		if(result!=null){
+			$(".getTestTime_date").html('考试时间:'+result.date1);
+			$("#getTestTimeDay").html(result.day1);
+		}
+    },'JSON');
+	
+	$.get("/registration_time",{},function(result){
+		if(result!=null){
+			$(".registration_time_date").html('报名时间:'+result.date);
+			$("#registrationDay").html(result.day);
+		}
+    },'JSON');
+</script>
+<script type="text/javascript">
+    wordlimit('content_box',100);
+</script>
+{/block}

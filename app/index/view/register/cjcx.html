@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+	<meta charset="UTF-8">
+	<title>安徽自考成绩查询-安徽自考网</title>
+	<meta name="Keywords" content="安徽自考成绩查询,安徽自考网"/>
+	<meta name="Description" content="安徽自考网服务于广大自考生提供2018年10月自考成绩查询，包含自考单科成绩查询及自考全部成绩查询等服务，更多内容请关注安徽自学考试网..."/>
+	<link rel="stylesheet" href="{:getDoman()}/css/wsbm.css">
+	<link rel="stylesheet" href="{:getDoman()}/css/lyz.wsbm.css">
+	<link rel="canonical" href="{:getDoman()}/cjcx.html">
+</head>
+<body>
+	<div id="width"></div>
+	<div id="top">
+		<div class="title">
+			<h1><a href="{:getDoman()}/cjcx.html" title="安徽自考成绩查询" target="_self">安徽自考成绩查询</a></h1>
+		</div>
+		<div class="time" id="nowtime"></div>
+	</div>
+	<div id="header">
+		<a href="{:getDoman()}" target="_blank">自考首页</a>
+		<a href="{:getDoman()}/wsbm.html" target="_self">网上报名</a>
+		<a href="{:getDoman()}/kemu.html" target="_self">考试科目</a>
+		<a href="{:getDoman()}/cjcx.html" class="active" target="_self">成绩查询</a>
+	</div>
+	<div class="cjcx">
+		<p>2018年10月高等教育自学考试阅卷工作已经顺利完成,成绩已公布,考生可在安徽自考成绩查询页面查询。如考生对考试成绩有疑问，可以在成绩公布之日起1周内，根据各市教育考试机构安排的时间、地点申请成绩复核，逾期不予受理。</p>
+		<iframe class="iframe" src="http://zk.ahzsks.cn/" rel="nofollow"></iframe>
+	</div>
+	<script>
+    $(function () {
+        $("#txtBeginDate").calendar({
+            controlId: "divDate",                  // 弹出的日期控件ID，默认: $(this).attr("id") + "Calendar"
+            speed: 200,                            // 三种预定速度之一的字符串("slow", "normal", or "fast")或表示动画时长的毫秒数值(如：1000),默认：200
+            complement: true,                      // 是否显示日期或年空白处的前后月的补充,默认：true
+            readonly: true,                        // 目标对象是否设为只读，默认：true
+            upperLimit: new Date(),                // 日期上限，默认：NaN(不限制)
+            lowerLimit: new Date("1900/01/01"),    // 日期下限，默认：NaN(不限制)
+            callback: function () {                // 点击选择日期后的回调函数
+                // alert("您选择的日期是：" + $("#txtBeginDate").val());
+            }
+        });
+        $("#txtEndDate").calendar();
+    });
+	</script>
+	<script type="text/javascript">
+			function showTime(){ 
+	            var date = new Date();            //获取时间对象
+	            var year = date.getFullYear();    //获取年
+	            var month = date.getMonth()+1;    //获取月份。获取的月份比真实的月份少一个月。所以这里得+1 
+	            var day = date.getDate();         //获取日
+	            var week = date.getDay();         //返回0--6。当中0表示星期天，1--6代表星期一到星期六
+	            var weekStr="未知"; 
+	            var hours = date.getHours();      //获取时（24小时制）
+	            var minutes = date.getMinutes();  //获取分
+	            var seconds = date.getSeconds();  //获取秒
+	            // var milliseconds = date.getMilliseconds();//获得毫秒         
+	            //处理星期的显示           
+	            switch(week){
+	                    case 1:
+	                        weekStr="一 "
+	                    break;
+	                    case 2:
+	                        weekStr="二 "
+	                    break;
+	                    case 3:
+	                        weekStr="三 "
+	                    break;
+	                    case 4:
+	                        weekStr="四 "
+	                    break;
+	                    case 5:
+	                        weekStr="五 "
+	                    break;
+	                    case 6:
+	                        weekStr="六 "
+	                    break;
+	                    default:
+	                      weekStr="日 ";
+	               }
+	            document.getElementById("nowtime").innerHTML = 
+	            year + "年" + month + "月" + day + "日 "+"  <span>星期"+weekStr+hours + "</span>:" + minutes + ":" + seconds  
+	            // + ":"+ milliseconds; 
+	        }
+		setInterval("showTime()",10);
+	</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?90f54c2f676f3f41d32bbe694d5127bf";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?57ba4d2f63b144692a29b10a3cd5646a":"https://jspassport.ssl.qhimg.com/11.0.1.js?57ba4d2f63b144692a29b10a3cd5646a";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script>
+</body>
+</html>

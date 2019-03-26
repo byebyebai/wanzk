@@ -1,0 +1,107 @@
+{extend name="layout/base" /}
+{block name="title"}{$article_info.name}-安徽自考网{/block}
+{block name="keywords"}{$article_info.seo_keys}{/block}
+{block name="description"}{$article_info.describe}{/block}
+{block name="css"}
+	<link rel="stylesheet" href="{:getDoman()}/css/gong.css">
+	<link rel="stylesheet" href="{:getDoman()}/css/info.css">
+{/block}
+{block name="content"}
+	<div id="list_weizhi">
+		<div id="list_weizhi_1"></div>
+	    <div id="list_weizhi_2">当前位置：<a href="{:getDoman()}" target="_self">安徽自考网</a>><a href="{:getDoman()}{:url('index/index/lanmu',['id'=>$article_info.category_id])}" target="_self">{$article_info.category_name}</a>>正文</div>
+	</div>
+	<div id="neirong_zhutibox">
+		<div id="neirong_zhutibox_left">
+	          	<div id="neirong_zhutibox_left_wenzhang">
+	        		<div class="neirong_biaoti"><h1>{$article_info.name}</h1></div>
+	            	<div class="neirong_ziduan">
+	            		来源：{$article_info.origin} &nbsp;&nbsp;
+	            		作者：<a href="{:getDoman()}">{$article_info.nickname}</a>&nbsp;&nbsp;
+	            		时间：{$article_info.add_time|mb_substr=0,10,'utf-8'} &nbsp;&nbsp;
+	            		浏览：<div id="hits" style="display: inline;"></div>次
+	            	</div>
+		        	<div class="zhengwen" oncontextmenu=self.event.returnValue=false onselectstart="return false">
+		        		{$article_info.content}
+		        	</div>
+	           </div>
+	           <div id="neirong_zhengwen_fenxiang">
+		        <div class="bdsharebuttonbox"><a href="#" class="bds_sqq" data-cmd="sqq" rel="nofollow"></a><a href="#" class="bds_weixin" data-cmd="weixin" rel="nofollow"></a><a href="#" class="bds_qzone" data-cmd="qzone" rel="nofollow"></a><a href="#" class="bds_tsina" data-cmd="tsina" rel="nofollow"></a><a href="#" class="bds_isohu" data-cmd="isohu" rel="nofollow"></a><a href="#" class="bds_ty" data-cmd="ty" rel="nofollow"></a><a href="#" class="bds_fbook" data-cmd="fbook" rel="nofollow"></a></div>
+				<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["qzone","tsina","weixin","sqq","isohu","ty"],"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+	           </div>
+			  <div id="neirong_zhengwen_shenming">版权声明：如果安徽自考网所转载内容不慎侵犯了您的权益，请与我们联系，我们将会及时处理；如转载本自学考试网内容，请注明出处。</div>
+			  <div id="neirong_zhutibox_bmlc">
+	          		<div id="neirong_zhutibox_bmlc_bt">安徽自考报名流程:</div>
+	                <div id="neirong_zhutibox_bmlc_nr">
+						<p>①直接来办公室咨询、报名。报名时带好身份证及正反面复印件2张、蓝底1寸相片4张。(专升本应提供大专毕业证复印件);</p>
+						<p>②学生选择网上或电话报名，再在指定时间内来校报到入学;</p>
+						<p>③业余学生准备好个人资料和注册报考费，直接过来办公室现场报名;</p>
+						<p>④报名地址：南昌市西湖区丁公路125号(总部地址);</p>
+						<p>⑤电话咨询：<span style="color:#F00;">0791-87875683(办)</span>;</p>
+						<p>⑥网上报名：点击进入<a href="{:getDoman()}/wsbm.html" style="color:#4c33e5;">安徽自考网上报名系统</a>;</p>
+						<p style="color:#F00;">(特别提醒：我校没有在各车站路口设立接待点，请广大考生自行来校，严防路人以指路带领为名上当受骗，中途勿受陌生人接待，以免误导，造成不必要的财产损失。)</p>
+						<p style="color:#F00;">左课送福利了：现在报名自考，可免费领取自考真题：<span style="color:#000;">点这里咨询学习中心老师。</span></p>
+					</div>
+	         </div>
+	        <div id="neirong_zhutibox_kec">
+	        	<div class="neirong_zhutibox_kec1">
+		        	<p><span>层次</span><span>专业名称</span><span>讲师</span><span>课时</span><span>点击领取</span></p>
+		        	<p><span>专科</span><span>会计</span><span>陈老师</span><span>180节</span><span><a class="showIm"><i class="kectu"></i>领取</a></span></p>
+		        	<p><span>专科</span><span>护理学</span><span>陈老师</span><span>180节</span><span><a class="showIm"><i class="kectu"></i>领取</a></span></p>
+		        	<p><span>专科</span><span>工商管理</span><span>陈老师</span><span>180节</span><span><a class="showIm"><i class="kectu"></i>领取</a></span></p>
+		        	<p><span>专科</span><span>行政管理</span><span>陈老师</span><span>180节</span><span><a class="showIm"><i class="kectu"></i>领取</a></span></p>
+	        	</div>
+	        	<div class="neirong_zhutibox_kec2">
+		        	<p><span>层次</span><span>专业名称</span><span>讲师</span><span>课时</span><span>点击领取</span></p>
+		        	<p><span>本科</span><span>会计</span><span>陈老师</span><span>180节</span><span><a class="showIm"><i class="kectu"></i>领取</a></span></p>
+		        	<p><span>本科</span><span>护理学</span><span>陈老师</span><span>180节</span><span><a class="showIm"><i class="kectu"></i>领取</a></span></p>
+		        	<p><span>本科</span><span>工商管理</span><span>陈老师</span><span>180节</span><span><a class="showIm"><i class="kectu"></i>领取</a></span></p>
+		        	<p><span>本科</span><span>汉语言文学</span><span>陈老师</span><span>180节</span><span><a class="showIm"><i class="kectu"></i>领取</a></span></p>
+	        	</div>
+	        </div>
+	        <div id="neirong_zhutibox_syp">
+	          	上一篇：<a {if condition="isset($front['id'])"}href="{:getDoman()}{:url('index/index/info',['id'=>$front['id']])}"{/if}>{$front['name'] ?? $front}</a><br/>
+				下一篇：<a {if condition="isset($after['id'])"}href="{:getDoman()}{:url('index/index/info',['id'=>$after['id']])}"{/if}>{$after['name'] ?? $after}</a>
+	        </div>
+	        <div id="neirong_zhutibox_xgwz">
+	        	<div id="neirong_zhutibox_xgts">看了"{$article_info.name}"的人还看了：</div>
+	        	<ul class="tuijianwenzhang">
+	        		{volist name="rand" id='vo' length="10"}
+	        		<li><a href="{:getDoman()}{:url('index/index/info',['id'=>$vo['id']])}" class="infonr">{$vo.name}</a></li>
+	        		{/volist}
+	        	</ul>
+	        </div>
+	    </div>
+	    {block name="right_menu"}{__block__}{/block}
+	</div>
+{/block}
+{block name="script"}
+{__block__}
+<script type="text/javascript" src="{:getDoman()}/js/index.js"></script>
+<script type="text/javascript">
+    wordlimit('infonr',28);
+    addhits("{$article_info.id}");
+</script>
+<script type="text/javascript">
+	
+window.onload=
+    function(){
+        var oDiv = document.getElementById("youcefudong"),
+            H = 0,
+            Y = oDiv        
+        while (Y) {
+            H += Y.offsetTop; 
+            Y = Y.offsetParent;
+        }
+        window.onscroll = function()
+        {
+            var s = document.body.scrollTop || document.documentElement.scrollTop
+            if(s>H) {
+                oDiv.style = "position:fixed;top:3px;"
+            } else {
+                oDiv.style = ""
+            }
+        }
+    }
+</script>
+{/block}

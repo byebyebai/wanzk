@@ -1,0 +1,18 @@
+@charset "utf-8";
+/*院校模板*/
+#yx_weizhi{margin:0 auto;width:1200px;height:25px;font-size:12px;}
+#yx_weizhi img{margin-right:6px;margin-left:15px;}
+#yx_weizhi_1{float:left;width:28px;height:25px;background:url(../img/xiaofangzi.png) no-repeat 8px 5px;}
+#yx_weizhi_2{float:left;width:600px;line-height:25px;}
+#yx_body{width:1200px;margin:0 auto;background:#fff;overflow: hidden;}
+#yx_xz{line-height:40px;text-indent:1em;border-bottom:1px solid #3d7eff;padding-bottom:15px;margin-left:20px;font-size:14px;}
+#yx_xz a.blue {color:#208aff;}
+#yx_xz a{padding:0 7px;}
+#yx_xz a:hover{color:#208aff;}
+#yx_xz p.xian_right a{border-right:1px solid #000;}
+#yx_list_left{margin:0 auto;padding:0 10px 0 20px;width:990px;float:left;}
+#yx_list_left ul li img{width:225px;height:140px;border-radius:3px;}
+#yx_list_left ul li{width:225px;margin:10px;float:left;}
+#yx_list_left ul li .yx_list_left_jsl1{background:url(../img/xx.png) no-repeat 0 2px;font-size:12px;padding-left:18px;margin-right:5px;}
+#yx_list_left ul li .yx_list_left_jsl2{background:url(../img/yxzy.png) no-repeat 0 2px;font-size:12px;padding-left:18px;margin-right:5px;}
+#yx_list_left ul li .yx_list_left_jsl3{background:url(../img/wsbm.png) no-repeat 0 2px;font-size:12px;padding-left:18px;}

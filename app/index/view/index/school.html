@@ -1,0 +1,110 @@
+{extend name="layout/base" /}
+{block name="title"}安徽自考专科院校_安徽自考本科院校-安徽自考网{/block}
+{block name="keywords"}安徽自考专科院校,安徽自考本科院校,安徽自考网{/block}
+{block name="description"}安徽自考网服务广大安徽自考生提供安徽自考专科/本科院校，包含安徽大学、合肥工业大学、中国科学技术大学、安徽医科大学、安徽农业大学等热门院校，全身心的为广大安徽自考生服务。{/block}
+{block name="css"}
+    <link rel="stylesheet" href="{:getDoman()}/css/gong.css">
+    <link rel="stylesheet" href="{:getDoman()}/css/list_4.css">
+    <meta itemprop="image" content="{:getDoman()}/images/5c21a6f27d4fa.jpg"/>
+{/block}
+{block name="content"}
+<div id="yx_weizhi">
+    <div id="yx_weizhi_1"></div>
+    <div id="yx_weizhi_2">当前位置：<a href="{:getDoman()}" target="_self">安徽自考网</a>&gt;<a href="{:getDoman()}/school.html" target="_self">安徽自考专科/本科院校</a></div>
+</div>
+    <div id="yx_body">
+    <div id="yx_xz">
+        <p class="menu1">层次：
+            <a href="{:getDoman()}/school.html" class="blue" target="_self">全部</a>
+            <a href="javascript:void(0);">专科</a>
+            <a href="javascript:void(0);">本科</a>
+        </p>
+        <p class="xian_right menu3">地区：
+            {volist name="address_list" id="vo"}
+                <a href="javascript:void(0);" data-id="{$vo.Id}">{$vo.name}</a>
+            {/volist}
+        </p>
+    </div>
+    <div id="yx_list_left">
+    {notempty name="list"} 
+        <ul>
+            {volist name="list" id="vo"}
+            <li>
+                <a href="{:getDoman()}{:url('index/index/lanmu',['id'=>$vo.id])}">
+                  <img src="{:getDoman()}{$vo.cover_id|get_picture_url}" alt="{$vo.name}自学考试院校">
+                  {$vo.name}自考院校
+              	</a>
+                <p>
+                	<a class="yx_list_left_jsl1" href="{:getDoman()}{:url('index/index/tag',['cate_id'=>$vo.id,'id'=>2])}" title="{$vo.name}自考报考简章">报考简章</a>
+                	<a class="yx_list_left_jsl2" href="{:getDoman()}{:url('index/index/tag',['cate_id'=>$vo.id,'id'=>3])}" title="{$vo.name}自学考试报考专业">报考专业</a>
+                	<a class="yx_list_left_jsl3" href="{:getDoman()}/wsbm.html" title="{$vo.name}自考网上报名">网上报名</a>
+                </p>
+            </li>
+            {/volist}
+        </ul>
+        {else /}
+        <p style="text-align: center; margin-top: 15px;">没查到对应数据</p>
+    {/notempty}
+    </div>
+        {block name="right_menu"}{__block__}{/block}
+    </div>
+</div>
+{/block}
+{block name="script"}
+{__block__}
+<script>    
+//获取url参数
+var $_GET = (function(){
+    var url = window.document.location.href.toString();
+    var u = url.split("?");
+    if(typeof(u[1]) == "string"){
+        u = u[1].split("&");
+        var get = {};
+        for(var i in u){
+            var j = u[i].split("=");
+            get[j[0]] = j[1];
+        }
+        return get;
+    } else {
+        return {};
+    }
+})();
+</script>
+<script type="text/javascript" src="{:getDoman()}/js/school.js"></script>
+<script type="text/javascript">
+    function toUrl(keywords = '',keywords1=''){
+        var domain = document.domain;
+        if(keywords!= ''){
+            urldata = keywords;
+        }
+        if(keywords1 != ''){
+            urldata = keywords1;
+        }
+        if(keywords1!='' && keywords!=''){
+            urldata = keywords+"&"+keywords1;  
+        }
+        window.location.href = 'http://'+domain+"/school.html?"+urldata;
+    }
+</script>
+<script type="text/javascript">
+window.onload=
+    function(){
+        var oDiv = document.getElementById("youcefudong"),
+            H = 0,
+            Y = oDiv        
+        while (Y) {
+            H += Y.offsetTop; 
+            Y = Y.offsetParent;
+        }
+        window.onscroll = function()
+        {
+            var s = document.body.scrollTop || document.documentElement.scrollTop
+            if(s>H) {
+                oDiv.style = "position:fixed;top:3px;"
+            } else {
+                oDiv.style = ""
+            }
+        }
+    }
+</script>
+{/block}

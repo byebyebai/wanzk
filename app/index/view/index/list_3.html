@@ -1,0 +1,96 @@
+{extend name="layout/base" /}
+{block name="title"}{$category[0]['seo_name']}-安徽自考网{/block}
+{block name="keywords"}{$category[0]['keyword']}{/block}
+{block name="description"}{$category[0]['describe']}{/block}
+{block name="css"}
+	<link rel="stylesheet" href="{:getDoman()}/css/gong.css">
+	<link rel="stylesheet" href="{:getDoman()}/css/list_3.css">
+	<meta itemprop="image" content="{:getDoman()}{$category[0]['cover_id']|get_picture_url}"/>
+{/block}
+{block name="content"}
+<div id="yxjs_body">
+<div id="yx_weizhi">
+    <div id="yx_weizhi_1"></div>
+    <div id="yx_weizhi_2">当前位置：<a href="{:getDoman()}" class="blue" target="_self">安徽自考网</a>><a href="{:getDoman()}/school.html" target="_self">安徽自考本科院校</a>><a href="{:getDoman()}{:url('index/index/lanmu',['id'=>$category[0]['id']])}" target="_self">{$category[0]['name']}自考网</a></div>
+</div>
+<div id="yxjs_top">
+	<div class="yxjs_top_box1">
+		<img src="{:getDoman()}{$category[0]['cover_id']|get_picture_url}" alt="{$category[0]['name']}" />
+	</div>
+	<div class="yxjs_top_box2">
+		<h1>{$category[0]['seo_name']}</h1>
+		<p>{$category[0]['describe']}</p>
+	</div>
+</div>
+    <div id="yxjs_top_bottom">
+        <div id="yxjs_top_bottom_left">
+            <ul>
+                <li class="x_color"><h2><a href="{:getDoman()}{:url('index/index/lanmu',['id'=>$category[0]['id']])}" target="_self" title="{$category[0]['name']}简介">学校主页</h2></a></li>
+                <li><h2><a href="{:getDoman()}{:url('index/index/tag',['id'=>2,'cate_id'=>$category[0]['id']])}" target="_self" title="{$category[0]['name']}自考招生简章">招生简章</h2></a></li>
+                <li><h2><a href="{:getDoman()}{:url('index/index/tag',['id'=>3,'cate_id'=>$category[0]['id']])}" target="_self" title="{$category[0]['name']}自考招生专业">招生专业</h2></a></li>
+                <li><h2><a href="{:getDoman()}/wsbm.html" title="{$category[0]['name']}自考网上报名">网上报名</h2></a></li>
+            </ul>
+        </div>
+        <div class="yxjs_top_bottom_center" id="con_school_1">
+            <div class="neirong" oncontextmenu=self.event.returnValue=false onselectstart="return false">{$category[0]['content']}</div>
+        </div>
+        <div class="yxjs_top_bottom_center hide" id="con_school_2">
+            <div class="yx_list">
+                <ul class="lm_list">
+                </ul>
+                <div class="pages">
+                    <!-- 分页 -->
+                </div>
+            </div>
+        </div>   
+    </div>
+    {block name="right_menu"}{__block__}{/block}
+</div>
+{/block}
+{block name="script"}
+ <script type="text/javascript" charset="UTF-8" src="http://scripts.easyliao.com/8841/28397.js"></script>
+<script type="text/javascript" src="{:getDoman()}/js/index.js"></script>
+<script type="text/javascript" src="{:getDoman()}/js/jquery-2.0.3.min.js"></script>
+<script>
+	$.get("/getTestTime",{},function(result){
+
+		if(result!=null){
+			$(".getTestTime_date").html('考试时间:'+result.date1);
+			$("#getTestTimeDay").html(result.day1);
+		}
+    },'JSON');
+	
+	$.get("/registration_time",{},function(result){
+		if(result!=null){
+			$(".registration_time_date").html('报名时间:'+result.date);
+			$("#registrationDay").html(result.day);
+		}
+    },'JSON');
+</script>
+<script type="text/javascript">
+	wordlimit('clnr1',12);
+    wordlimit('clnr2',8);
+</script>
+<script type="text/javascript">
+ 
+window.onload=
+    function(){
+        var oDiv = document.getElementById("yxjs_top_bottom_left"),
+            H = 0,
+            Y = oDiv        
+        while (Y) {
+            H += Y.offsetTop; 
+            Y = Y.offsetParent;
+        }
+        window.onscroll = function()
+        {
+            var s = document.body.scrollTop || document.documentElement.scrollTop
+            if(s>H) {
+                oDiv.style = "position:fixed;top:3px;"
+            } else {
+                oDiv.style = ""
+            }
+        }
+    }
+</script>
+{/block}

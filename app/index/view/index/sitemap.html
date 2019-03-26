@@ -1,0 +1,97 @@
+{extend name="layout/base" /}
+{block name="title"}安徽自考网站地图-安徽自考网{/block}
+{block name="keywords"}安徽自考网站地图,安徽自考网{/block}
+{block name="description"}安徽自考网站地图{/block}
+{block name="css"}
+	<link rel="stylesheet" href="{:getDoman()}/css/gong.css">
+    <style type="text/css">
+    	.content-box{width:1200px;margin:20px auto;}
+        .left_box{float:left;width:100px;height:120px;display:block;box-shadow:1px 1px 1px #ccc;background:#fff;}
+        .left_box a{width:100px;line-height:35px;display:block;text-align:center;}
+        .right_box{background:#fff;float:right;display:block;width:1080px;margin:0 0 20px 20px;box-shadow:1px 1px 1px #ccc;border-radius:0 0 5px 0;}
+        .right_box ul{padding:5px 0 0 20px;}
+        .right_box .default{padding-bottom:10px;display:none;}
+        .right_box .list_active{display:block;}
+        .right_box ul li{font-size:14px;}
+        .right_box ul li p{margin-top:20px;margin-bottom:5px;}
+        .right_box ul li:first-child p{margin-top:0;}
+        .right_box ul li p a{font-size:17px;color:#397efd;}
+        .right_box ul li .erji{margin-right:10px;}
+        .active{color:#397efd;}
+        .right_box .tag li{float:left;margin-left:5px;margin:10px;}
+        .right_box .tag li a{border:1px solid #ccc;padding:4px 6px;}
+        .right_box .item{margin:3px 0;}
+    </style>
+	<meta itemprop="image" content="http://wan.zkcedu.com/images/5c21a65513697.jpg"/>
+{/block}
+{block name="content"}
+    <div id="sy_body">
+        <div id="sy_bodytop">
+            <div class="content-box">
+                <div id="stfd" class="left_box">
+                	<a href="javascript:void(0);" class="active">栏目列表</a>
+                	<a href="javascript:void(0);">Tag标签</a>
+                    <a href="javascript:void(0);">文章列表</a>
+                </div>
+                <div class="right_box">
+                	<ul class="default list_active">
+                      {volist name="category_list" id="vo"}
+                  		<li class="item">
+                  			<p><a href="{:getDoman()}/lanmu/{$vo.id}.html">{$vo.name}</a></p>
+                  			{if isset($vo._child)}
+	                  			{volist name="$vo._child" id="v1"}
+	                  				<a class="erji" href="{:getDoman()}/lanmu/{$v1.id}.html">{$v1.name}</a>
+	                  			{/volist}
+                  			{/if}
+                  		</li>
+                      {/volist}
+                	</ul>
+                    <ul class="default tag">
+                      {volist name="tag_list" id="vo"}
+                      	<li><a href="{:getDoman()}/tag/{$vo.tag_id}.html">{$vo.tag_name}({$vo.count})</a></li>
+                      {/volist}
+                    </ul>
+                    <ul class="default">
+                      {volist name="article_list" id="vo"}
+                      	<li class="item"><a href="{:getDoman()}/info/{$vo.id}.html">{$vo.name}</a></li>
+                      {/volist}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}
+{block name="script"}
+{__block__}
+<script type="text/javascript">
+    $(".left_box a").each(function(index,e){
+        $(this).click(function(e){
+            var index = $(this).index();
+            $(this).addClass("active").siblings().removeClass("active");
+            // $(".right_box ul").hide();
+            $(".right_box ul").eq(index).addClass("list_active").siblings().removeClass("list_active");
+        })
+    })
+</script>
+<script type="text/javascript">
+window.onload=
+    function(){
+        var oDiv = document.getElementById("stfd"),
+            H = 0,
+            Y = oDiv        
+        while (Y) {
+            H += Y.offsetTop; 
+            Y = Y.offsetParent;
+        }
+        window.onscroll = function()
+        {
+            var s = document.body.scrollTop || document.documentElement.scrollTop
+            if(s>H) {
+                oDiv.style = "position:fixed;top:1px;"
+            } else {
+                oDiv.style = ""
+            }
+        }
+    }
+</script>
+{/block}

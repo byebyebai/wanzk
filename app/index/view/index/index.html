@@ -1,0 +1,948 @@
+{extend name="layout/base"/}
+{block name="title"}安徽自考网-安徽自学考试官网{/block}
+{block name="keywords"}安徽自考网,安徽自学考试网,安徽自考报考时间,安徽自考报考条件,安徽自考网上报名{/block}
+{block name="description"}安徽自考网服务广大考生提供安徽自学考试网上报名、热门专业及报考院校,发布自学考试报名时间、成绩查询、历年真题及相关问答等资讯尽在安徽自考网...{/block}
+{block name="css"}
+	<link rel="stylesheet" href="{:getDoman()}/css/gong.css">
+	<link rel="stylesheet" href="{:getDoman()}/css/index.css">
+	<link rel="stylesheet" href="{:getDoman()}/css/swiper.min.css">
+	<meta itemprop="name" content="安徽自考网"/>
+	<meta itemprop="image" content="{:getDoman()}/images/logo.jpg"/>
+{/block}
+{block name="head"}
+    <div id="head">
+        <div id="headtop"> 
+            <h1><a class="logo" href="{:getDoman()}" title="安徽自考网">安徽自考网</a></h1>
+            <div class="sosuo">
+                <form id="search" action="/search" method="get" target="_self">
+                    <input type="text" name="keyword" class="search_content" value="{$Request.get.keyword|unicode_decode}" placeholder="请输入搜索内容..." />
+                    <button type="button" class="ss search_btn"></button>
+                </form>
+            </div>
+        </div>
+        <div id="dh">
+            <ul>
+                <li><h2><a href="{:getDoman()}" title="安徽自考网" target="_self">自考首页</a></h2></li>
+                <li><h2><a href="{:getDoman()}/lanmu/1.html" title="安徽自考报名时间" target="_self">自考报名</a></h2></li>
+                <li><h2><a href="{:getDoman()}/school.html" title="安徽自考院校" target="_self">自考院校</a></h2></li>
+                <li><h2><a href="{:getDoman()}/zhuanye.html" title="安徽自考专业" target="_self">自考专业</a></h2></li>
+                <li><h2><a href="{:getDoman()}/wsbm.html" title="安徽自考网上报名">网上报名</a></h2></li>
+                <li><h2><a href="{:getDoman()}/lanmu/3.html" title="安徽自考历年真题" target="_self">历年真题</a></h2></li>
+                <li><h2><a href="{:getDoman()}/lanmu/2.html" title="安徽自学考试" target="_self">自学考试</a></h2></li>
+                <li><h2><a href="{:getDoman()}/lanmu/31.html" title="安徽自考毕业" target="_self">自考毕业</a></h2></li>
+            </ul>
+        </div>
+        <div id="dqh">
+	        <div id="dq">
+	         	各地区自考：
+	         	<a href="{:getDoman()}/lanmu/39.html">合肥</a>丨
+	         	<a href="{:getDoman()}/lanmu/40.html">芜湖</a>丨
+	         	<a href="{:getDoman()}/lanmu/41.html">淮南</a>丨
+	         	<a href="{:getDoman()}/lanmu/42.html">安庆</a>丨
+	         	<a href="{:getDoman()}/lanmu/43.html">黄山</a>丨
+	         	<a href="{:getDoman()}/lanmu/44.html">铜陵</a>丨
+	         	<a href="{:getDoman()}/lanmu/45.html">淮北</a>丨
+	         	<a href="{:getDoman()}/lanmu/46.html">蚌埠</a>丨
+	         	<a href="{:getDoman()}/lanmu/47.html">宣城</a>丨
+	         	<a href="{:getDoman()}/lanmu/48.html">亳州</a>丨
+	         	<a href="{:getDoman()}/lanmu/49.html">六安</a>丨
+	         	<a href="{:getDoman()}/lanmu/50.html">马鞍山</a>丨
+	         	<a href="{:getDoman()}/lanmu/51.html">宿州</a>丨
+	         	<a href="{:getDoman()}/lanmu/52.html">阜阳</a>丨
+	         	<a href="{:getDoman()}/lanmu/53.html">池州</a>
+	        </div>
+        </div>
+    </div>
+{/block}
+{block name="content"}
+<div id="sy_body">
+    <div id="sy_bodytop">
+        <div class="banner">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                  {notempty name="$banner"}
+                    {volist name="banner" id="vo"}
+                    <div class="swiper-slide">
+                        <a href="{$vo.url}" title="{$vo.title}"><img src="{:getDoman()}{$vo.cover_id|get_picture_url}" alt="{$vo.title}"></a>
+                    </div>
+                    {/volist}
+                  {/notempty}  
+                </div>
+                <div class="swiper-pagination fixed"></div>
+            </div>
+        </div>
+        <div class="toutiao">
+          <div class="ttwz">
+             <p class="p">(<a href="{:getDoman()}" class="sy_nr6" title="安徽自学考试书籍在哪里购买?">安徽自学考试书籍在哪里购买?</a>)</p>
+            <ul>
+	            <li>[<a href="{:getDoman()}/info/14.html" class="sy_nr7" title="2019年安徽自考报名时间">2019年安徽自考报名时间</a>]</li>
+	            <li>[<a href="{:getDoman()}/info/27.html" class="sy_nr7" title="2019年安徽自考报名条件">2019年安徽自考报名条件</a>]</li>
+	            <li>[<a href="{:getDoman()}/wsbm.html" class="sy_nr7" title="2019年安徽自考网上报名">2019年安徽自考网上报名</a>]</li>
+	            <li>[<a href="{:getDoman()}/lanmu/15.html" class="sy_nr7" title="2019年安徽自考考试时间">2019年安徽自考考试时间</a>]</li>
+	            <li>[<a href="{:getDoman()}/cjcx.html" class="sy_nr7" title="2019年安徽自学考试成绩查询">2019年安徽自学考试实践考试</a>]</li>
+	            <li>[<a href="{:getDoman()}/lanmu/32.html" class="sy_nr7" title="2019年安徽自学考试毕业证书">2019年安徽自学考试毕业证书</a>]</li>
+            </ul>
+          </div>
+         {notempty name="$new"}
+          <div class="ttwz">
+            <p class="p">(<a href="{:getDoman()}{:url('index/index/info',['id'=>$new[0]['id']])}" title="{$new[0]['seo_title']}" class="sy_nr6">{$new[0]['seo_title']}</a>)</p>
+            <ul>
+                {volist name="new" id="vo" offset="1"}
+                <li>[<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo['id']])}" title="{$vo.seo_title}" class="sy_nr7">{$vo.seo_title}</a>]</li>
+                {/volist}
+            </ul>
+          </div>
+          {/notempty}
+          {notempty name="$hot"}
+          <div class="ttwz">
+            <p class="p">(<a href="{:getDoman()}{:url('index/index/info',['id'=>$hot[0]['id']])}" title="{$hot[0]['name']}" class="sy_nr6">{$hot[0]['seo_title']}</a>)</p>
+            <ul>
+                {volist name="hot" id="vo" offset="1"}
+                <li>[<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo['id']])}" title="{$vo.seo_title}" class="sy_nr7">{$vo.seo_title}</a>]</li>
+                {/volist}
+            </ul>
+          </div>
+         {/notempty}
+           
+        </div>
+        <div class="djs">
+          <p><span>2019年安徽自考倒计时</span></p>
+          <div class="sj"></div>
+          <b id="daydw"></b>
+        </div>
+    </div>
+    <div id="sy_bklc">
+        <ul>
+            <li>
+	            <p><a href="{:getDoman()}/lanmu/1.html">自考报名</a></p>
+	            <span class="sjd">1月初</span>
+            </li>
+            <li>
+	            <p><a href="{:getDoman()}/lanmu/35.html">模拟试题</a></p>
+	            <span class="sjd">2月初</span>
+            </li>
+            <li>
+	            <p><a href="{:getDoman()}/lanmu/13.html">NIT报考</a></p>
+	            <span class="sjd">3月中旬</span>
+            </li>
+            <li>
+	            <p><a href="{:getDoman()}/lanmu/2.html">自考考试</a></p>
+	            <span class="sjd">4月14-15日</span>
+            </li>
+            <li>
+	            <p><a href="{:getDoman()}/lanmu/22.html">成绩查询</a></p>
+	            <span class="sjd">5月底</span>
+            </li>
+            <li>
+	            <p><a href="{:getDoman()}/wsbm.html">网上报名</a></p>
+	            <span class="sjd">7月初</span>
+            </li>
+            <li>
+	            <p><a href="{:getDoman()}/lanmu/36.html">历年真题</a></p>
+	            <span class="sjd">8月始</span>
+            </li>
+            <li>
+	            <p><a href="{:getDoman()}/lanmu/34.html">学士学位</a></p>
+	            <span class="sjd">9月中旬</span>
+            </li>
+            <li>
+	            <p><a href="{:getDoman()}/lanmu/14.html">自学考试</a></p>
+	            <span class="sjd">10月19-20日</span>
+            </li>
+        </ul>
+    </div>
+    <!--招生院校-->
+<div class="width_1200">
+  <div class="school_box">
+    <h2 class="school_boxp"><a href="{:getDoman()}/school.html" title="安徽自考院校">招生院校</a></h2>
+    <div class="school_name ">
+      <a class="school_on"><img src="{:getDoman()}/img/q1.png" alt="安徽大学"/></a>
+      <a><img src="{:getDoman()}/img/q7.png" alt="中国科学技术大学" /></a>
+      <a><img src="{:getDoman()}/img/q2.png" alt="合肥工业大学" /></a>
+      <a><img src="{:getDoman()}/img/q3.png" alt="安徽农业大学" /></a>
+      <a><img src="{:getDoman()}/img/q4.png" alt="安徽医科大学" /></a>
+      <a><img src="{:getDoman()}/img/q5.png" alt="合肥师范学院" /></a>
+      <a><img src="{:getDoman()}/img/q6.png" alt="安徽建筑大学" /></a>
+      <a><img src="{:getDoman()}/img/q9.png" alt="安徽中医药大学" /></a>
+    </div>
+    <div class="school_show" style="display:black">
+      <div class="schoolimg fl">
+        <img src="{:getDoman()}/img/y1.jpg" alt="安徽大学"/>
+        <dt>
+          <a href="{:getDoman()}/lanmu/7.html" class="bj_color1" title="安徽大学自学考试网">官方网站</a>
+          <a href="{:getDoman()}/tag/2/7.html" class="bj_color4" title="安徽大学自学考试招生简章">招生简章</a>
+          <a href="{:getDoman()}/wsbm.html" class="bj_color2" title="安徽大学自考网上报名">网上报名</a>
+        </dt>
+        <div class="yxbm">
+          <span>目前已有
+          	<font>9522</font>人报名
+          </span>
+        </div>
+        <p>
+          	<span>安徽大学</span>是国家“双一流”世界一流学科建设高校，国家“211工程”重点建设高校，入选“2011计划”，是涵盖理学、工学、文学、历史学、哲学、经济学、法学、管理学、教育学、艺术学等10个学科门类的安徽省属重点综合性大学...
+          	<a href="{:getDoman()}/lanmu/7.html">[查看详情]</a>
+        </p>
+      </div>
+        <div class="schoolimg fl">
+        <img src="{:getDoman()}/img/y2.jpg" alt="安徽财经大学"/>
+        <dt>
+          <a href="{:getDoman()}/lanmu/62.html" class="bj_color1" title="安徽财经大学自学考试网">官方网站</a>
+          <a href="{:getDoman()}/tag/2/62.html" class="bj_color4" title="安徽财经大学自学考试招生简章">招生简章</a>
+          <a href="{:getDoman()}/wsbm.html" class="bj_color2" title="安徽财经大学自考网上报名">网上报名</a>
+        </dt>
+        <div class="yxbm">
+          <span>目前已有
+          	<font>9351</font>人报名
+          </span>
+        </div>
+        <p>
+          	<span>安徽财经大学</span>简称“安财”，位于安徽省合肥市，是一所以经济学、管理学、法学为主的多科性财经大学，学校有专任教师1080人，在校普通本科生21226人，硕士研究生1944人；设有12个学院，1个教学部，67个本科专业，2个第二学士学位专业...
+          	<a href="{:getDoman()}/lanmu/62.html">[查看详情]</a>
+        </p>
+      </div>
+        <div class="schoolimg fl">
+        <img src="{:getDoman()}/img/y3.jpg" alt="合肥工业大学"/>
+        <dt>
+          <a href="{:getDoman()}/lanmu/25.html" class="bj_color1" title="合肥工业大学自学考试网">官方网站</a>
+          <a href="{:getDoman()}/tag/2/25.html" class="bj_color4" title="合肥工业大学自学考试招生简章">招生简章</a>
+          <a href="{:getDoman()}/wsbm.html" class="bj_color2" title="合肥工业大学自考网上报名">网上报名</a>
+        </dt>
+        <div class="yxbm">
+          <span>目前已有
+          	<font>9211</font>人报名
+          </span>
+        </div>
+        <p>
+          	<span>合肥工业大学</span>始建于1945年，位于安徽省合肥市，由教育部、工业和信息化部和国家国防科技工业局共同建设，位列211工程、985工程优势学科创新平台，是国家“双一流”世界一流学科建设高校，现有16个博士一级学科...
+          	<a href="{:getDoman()}/lanmu/25.html">[查看详情]</a>
+        </p>
+      </div>
+        <div class="schoolimg fl">
+        <img src="{:getDoman()}/img/y4.jpg" alt="安徽农业大学"/>
+        <dt>
+          <a href="{:getDoman()}/lanmu/26.html" class="bj_color1" title="安徽农业大学自学考试网">官方网站</a>
+          <a href="{:getDoman()}/tag/2/26.html" class="bj_color4" title="安徽农业大学自学考试招生简章">招生简章</a>
+          <a href="{:getDoman()}/wsbm.html" class="bj_color2" title="安徽农业大学自考网上报名">网上报名</a>
+        </dt>
+        <div class="yxbm">
+          <span>目前已有
+          	<font>8954</font>人报名
+          </span>
+        </div>
+        <p>
+          	<span>安徽农业大学</span>坐落于安徽省省会合肥市中心城区，为安徽省属重点大学，由农业农村部、国家林业和草原局和安徽省人民政府三方共同建设现，有硕士、博士研究生3006人，全日制本科生18087人，留学生151人；教授、副教授等高级专业技术职务698人...
+          	<a href="{:getDoman()}/lanmu/26.html">[查看详情]</a>
+        </p>
+      </div>
+        <div class="schoolimg fl">
+        <img src="{:getDoman()}/img/y5.jpg" alt="安徽医科大学"/>
+        <dt>
+          <a href="{:getDoman()}/lanmu/27.html" class="bj_color1" title="安徽医科大学自学考试网">官方网站</a>
+          <a href="{:getDoman()}/tag/2/27.html" class="bj_color4" title="安徽医科大学自学考试招生简章">招生简章</a>
+          <a href="{:getDoman()}/wsbm.html" class="bj_color2" title="安徽医科大学自考网上报名">网上报名</a>
+        </dt>
+        <div class="yxbm">
+          <span>目前已有
+          	<font>8878</font>人报名
+          </span>
+        </div>
+        <p>
+          	<span>安徽医科大学</span>位于安徽省会合肥市，是安徽省属重点大学，由安徽省人民政府、中华人民共和国国家卫生健康委员会、中华人民共和国教育部三方共建，设有31个本科专业。临床医学、药理学和毒理学、分子生物学与遗传学3个学科进入ESI全球排名前1%...
+          	<a href="{:getDoman()}/lanmu/27.html">[查看详情]</a>
+        </p>
+      </div>
+        <div class="schoolimg fl">
+        <img src="{:getDoman()}/img/y6.jpg" alt="合肥师范学院"/>
+        <dt>
+          <a href="{:getDoman()}/lanmu/28.html" class="bj_color1" title="合肥师范学院自学考试网">官方网站</a>
+          <a href="{:getDoman()}/tag/2/28.html" class="bj_color4" title="合肥师范学院自学考试招生简章">招生简章</a>
+          <a href="{:getDoman()}/wsbm.html" class="bj_color2" title="合肥师范学院自考网上报名">网上报名</a>
+        </dt>
+        <div class="yxbm">
+          <span>目前已有
+          	<font>8659</font>人报名
+          </span>
+        </div>
+        <p>
+          	<span>合肥师范学院</span>位于安徽省合肥市，是全国首批“服务国家特殊需求专业学位研究生”培养试点单位、共有专任教师769人，副高以上职称教师200余人，全日制在校生15225人；设有15个学院和4个公共课教学部，本科专业57个，教育硕士专业学位研究生...
+          	<a href="{:getDoman()}/lanmu/28.html">[查看详情]</a>
+        </p>
+      </div>
+        <div class="schoolimg fl">
+        <img src="{:getDoman()}/img/y7.jpg" alt="安徽建筑大学"/>
+        <dt>
+          <a href="{:getDoman()}/lanmu/29.html" class="bj_color1" title="安徽建筑大学自学考试网">官方网站</a>
+          <a href="{:getDoman()}/tag/2/29.html" class="bj_color4" title="安徽建筑大学自学考试招生简章">招生简章</a>
+          <a href="{:getDoman()}/wsbm.html" class="bj_color2" title="安徽建筑大学自考网上报名">网上报名</a>
+        </dt>
+        <div class="yxbm">
+          <span>目前已有
+          	<font>8612</font>人报名
+          </span>
+        </div>
+        <p>
+          	<span>安徽建筑大学</span>是一所以土建类学科专业为特色的多科性大学，是安徽省与住房和城乡建设部共建高校、教育部本科教学工作水平评估优秀院校，有11个一级学科、46个二级学科硕士学位授权点，5个专业学位授权类别、10个专业学位授权点；共有教职...
+          	<a href="{:getDoman()}/lanmu/29.html">[查看详情]</a>
+        </p>
+      </div>
+        <div class="schoolimg fl">
+        <img src="{:getDoman()}/img/y8.jpg" alt="安徽中医药大学"/>
+        <dt>
+          <a href="{:getDoman()}/lanmu/30.html" class="bj_color1" title="安徽中医药大学自学考试网">官方网站</a>
+          <a href="{:getDoman()}/tag/2/30.html" class="bj_color4" title="安徽中医药大学自学考试招生简章">招生简章</a>
+          <a href="{:getDoman()}/wsbm.html" class="bj_color2" title="安徽中医药大学自考网上报名">网上报名</a>
+        </dt>
+        <div class="yxbm">
+          <span>目前已有
+          	<font>8486</font>人报名
+          </span>
+        </div>
+        <p>
+          	<span>安徽中医药大学</span>坐落于有“江南唇齿，淮右襟喉”之称的历史文化名城——合肥，为安徽省高等教育振兴计划“地方特色高水平大学建设”高校,24个本科专业；有3个一级学科博士学位授予点，5个一级学科硕士学位授予点、25个二级学科硕士学位授予点...
+          	<a href="{:getDoman()}/lanmu/30.html">[查看详情]</a>
+        </p>
+      </div>
+      <form class="feedback">
+        <div class="bm_main">
+          <span class="bm_top">安徽自考网上报名系统</span>
+          <div class="bm_main_box">
+            <p>第一步：填写用户信息</p>
+            <div class="input_t">
+              <input type="text" name="name" placeholder="填写姓名" />
+              <dt>*</dt>
+            </div>
+            <div class="input_x">
+              <tr>
+                <td align="right">性别：</td>
+                <td>
+                  <input type="radio" name="sex" class="np" value="1" checked="">男
+                  <input type="radio" name="sex" class="np" value="2">女
+                </td>
+                </tr>
+            </div>
+            <div class="input_t">
+              <input type="text" name="tel" placeholder="填写电话" />
+              <dt>*</dt>
+            </div>
+            <div class="input_x">
+              <tr>
+                <td align="right">最高学历：</td>
+                <br/>
+                <td>
+                  <input type="radio" name="max_level" class="np" value="初中" checked="">初中
+                  <input type="radio" name="max_level" class="np" value="高中">高中
+                  <input type="radio" name="max_level" class="np" value="大专">大专
+                  <input type="radio" name="max_level" class="np" value="本科">本科
+                </td>
+              </tr>
+            </div>
+            <p>第二步：填写报名信息</p>
+            <div class="input_t">
+              <select id="type" name="level" class="select2">
+                <option value="-">请选择层次</option>
+                <option value="高升专">高升专</option>
+                <option value="专升本">专升本</option>
+                <option value="第二本科">第二本科</option>
+              </select>
+              <dt>*</dt>
+            </div>
+            <div class="input_t">
+              <input type="text" name="school" placeholder="请输入报考院校">
+              <dt>*</dt>
+            </div>
+            <div class="input_t">
+              <input type="text" name="profession" placeholder="请输入报考专业">
+              <dt>*</dt>
+            </div>
+            <input type="button" value=" 提 交 报 名 信 息 " class="coolbg confirm_btn">
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- 自考专业 -->
+    <div class="zy_list fl">
+        <h2 class="zy_list_zy"><a href="{:getDoman()}/zhuanye.html" title="安徽自考专业">热门专业</a></h2>
+        <div class="swiper-container">
+			<div class="swiper-wrapper">
+				{volist name=":getArctile(['status'=>1,'category_id'=>8],'sort asc,add_time desc','id,name,create_time,cover_id',7)" id="vo"}
+					<div class="swiper-slide">
+						<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="安徽{$vo.name}"><img src="{:getDoman()}{$vo.cover_id|get_picture_url}" alt="安徽{$vo.name}"/></a>
+					</div>
+				{/volist}
+			</div>
+		</div>
+ 	</div>
+  </div>
+</div>
+    <div id="sy_gg"><a href="{:getDoman()}/lanmu/3.html"><img src="{:getDoman()}/images/syziliao.png" alt="安徽自考学习资料"></a></div>
+    <div id="sy_zkbm">
+    	<h2 class="school_boxp"><a href="{:getDoman()}/lanmu/1.html" title="安徽自考报名">自考报名</a></h2>
+        <div class="zkbm_xia">
+            <div class="zkbm_left">
+              <div class="zk_lm">
+                <p>热门学校</p>
+                <ul>
+                    <li><a href="{:getDoman()}/lanmu/7.html">安徽大学</a></li>
+                    <li class="zn_left"><a href="{:getDoman()}/lanmu/28.html">合肥师范</a></li>
+                    <li><a href="{:getDoman()}/lanmu/26.html">安徽农业</a></li>
+                    <li class="zn_left"><a href="{:getDoman()}/lanmu/27.html">安徽医科</a></li>
+                </ul>
+              </div>
+              <div class="zk_lm">
+                <p>热门专业</p>
+                <ul>
+                    <li><a href="{:getDoman()}">会计</a></li>
+                    <li class="zn_left"><a href="{:getDoman()}">护理学</a></li>
+                    <li><a href="{:getDoman()}">汉语言</a></li>
+                    <li class="zn_left"><a href="{:getDoman()}">工商管理</a></li>
+                </ul>
+              </div>
+              <div class="zk_lm">
+                <p>新生报名</p>
+                <ul>
+                    <li><a href="{:getDoman()}/info/62.html">自考介绍</a></li>
+                    <li class="zn_left"><a href="{:getDoman()}/wsbm.html">网上报名</a></li>
+                    <li><a href="{:getDoman()}/lanmu/16.html">考试安排</a></li>
+                    <li class="zn_left"><a href="{:getDoman()}/cjcx.html">成绩查询</a></li>
+                </ul>
+              </div>
+              <div class="zk_lm">
+                <p>老生报名</p>
+                <ul>
+                    <li><a href="{:getDoman()}/wsbm.html">网上报名</a></li>
+                    <li class="zn_left"><a href="{:getDoman()}/lanmu/3.html">考试真题</a></li>
+                    <li><a href="{:getDoman()}/lanmu/16.html">考试安排</a></li>
+                    <li class="zn_left"><a href="{:getDoman()}/cjcx.html">成绩查询</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="zkbm_center">    
+                <dl class="zkbm_center_tw">
+                    {volist name=":getCategory(['id'=>4])" id="vo"}
+                    <dt>
+                        <img src="{:getDoman()}{$vo.cover_id|get_picture_url}" alt="{$vo.seo_name}">
+                        <div class="lm_jj">
+                            <h3><a href="{:getDoman()}/lanmu/4.html">{$vo.name}</a></h3>
+                            <p>提供包括院校、地区及专业等自考报考时间相关信息和动态...<span><a href="{:getDoman()}/lanmu/4.html">(查看详情)</a></span></p>
+                        </div>
+                    </dt>
+                    {/volist}
+                     <dd>
+                        <ul>
+                            {volist name=":getArctile(['status'=>1,'category_id'=>4],'sort asc,create_time desc','id,name,create_time,add_time,cover_id',6)" id="vo" key="k"}
+                                <li>
+                                	<a class="sy_nr1" href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}">{$vo.name}</a>
+                                	<span>{:str2date($vo.add_time,'m-d');}</span>
+                                </li>
+                            {/volist}
+                        </ul>
+                    </dd>       
+                </dl>
+                <dl class="zkbm_center_tw">
+                    {volist name=":getCategory(['id'=>11])" id="vo"}
+                    <dt>
+                        <img src="{:getDoman()}{$vo.cover_id|get_picture_url}" alt="{$vo.seo_name}">
+                        <div class="lm_jj">
+                            <h3><a href="{:getDoman()}/lanmu/11.html">{$vo.name}</a></h3>
+                            <p>提供包括院校、地区及专业等自考{$vo.name}相关信息和动态...<span><a href="{:getDoman()}/lanmu/11.html">(查看详情)</a></span></p>
+                        </div>
+                    </dt>
+                    {/volist}
+                     <dd>
+                        <ul>
+                            {volist name=":getArctile(['status'=>1,'category_id'=>11],'sort asc,add_time desc','id,name,add_time,cover_id',6)" id="vo" key="k"}
+                                <li>
+                                	<a class="sy_nr1" href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}">{$vo.name}</a>
+                                	<span>{:str2date($vo.add_time,'m-d');}</span>
+                                </li>
+                            {/volist}
+                        </ul>
+                    </dd>       
+                </dl>
+                <dl class="zkbm_center_tw">
+                    {volist name=":getCategory(['id'=>5])" id="vo"}
+                    <dt>
+                        <img src="{:getDoman()}{$vo.cover_id|get_picture_url}" alt="{$vo.seo_name}">
+                        <div class="lm_jj">
+                            <h3><a href="{:getDoman()}/lanmu/5.html">{$vo.name}</a></h3>
+                            <p>提供包括院校、地区及专业等自考{$vo.name}相关信息和动态...<span><a href="{:getDoman()}/lanmu/5.html">(查看详情)</a></span></p>
+                        </div>
+                    </dt>
+                    {/volist}
+                     <dd>
+                        <ul>
+                            {volist name=":getArctile(['status'=>1,'category_id'=>5],'sort asc,add_time desc','id,name,add_time,cover_id',6)" id="vo" key="k"}
+                                <li>
+                                	<a class="sy_nr1" href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}">{$vo.name}</a>
+                                	<span>{:str2date($vo.add_time,'m-d');}</span>
+                                </li>
+                            {/volist}
+                        </ul>
+                    </dd>       
+                </dl>
+                <dl class="zkbm_center_tw">
+                    {volist name=":getCategory(['id'=>12])" id="vo"}
+                    <dt>
+                        <img src="{:getDoman()}{$vo.cover_id|get_picture_url}" alt="{$vo.seo_name}">
+                        <div class="lm_jj">
+                            <h3><a href="{:getDoman()}/lanmu/12.html">{$vo.name}</a></h3>
+                            <p>提供包括院校、地区及专业等自考{$vo.name}相关信息和动态...<span><a href="{:getDoman()}/lanmu/12.html">(查看详情)</a></span></p>
+                        </div>
+                    </dt>
+                    {/volist}
+                     <dd>
+                        <ul>
+                            {volist name=":getArctile(['status'=>1,'category_id'=>12],'sort asc,add_time desc','id,name,add_time,cover_id',6)" id="vo" key="k"}
+                                <li>
+                                	<a class="sy_nr1" href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}">{$vo.name}</a>
+                                	<span>{:str2date($vo.add_time,'m-d');}</span>
+                                </li>
+                            {/volist}
+                        </ul>
+                    </dd>       
+                </dl>
+            </div>
+            <div class="zkbm_right">
+                <div class="cjwt">
+                    <h3><a href="{:getDoman()}/lanmu/58.html" title="安徽自考常见问题">常见问题</a></h3>
+                    <ul>
+                        {volist name=":getArctile(['status'=>1,'category_id'=>58],'sort asc,add_time desc','id,name,add_time,cover_id',7)" id="vo" key="k"}
+                            <li>
+                            	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}" class="sy_nr2">{$vo.name}</a>
+                            	<span>{:str2date($vo.add_time,'m-d')}</span>
+                            </li>
+                        {/volist}
+                    </ul>
+                </div>
+                <div class="gjl">
+                    <p class="gj">工具栏</p>
+                    <ul>
+                    	<li>
+	                        <a href="{:getDoman()}/info/62.html">
+	                        	<p class="gj_bj"></p>自考介绍
+	                        </a>
+                        </li>
+                        <li>
+	                        <a href="{:getDoman()}/wsbm.html">
+	                        	<p class="gj_bj"></p>新生报名
+	                        </a>
+                        </li>
+                        <li>
+	                        <a href="{:getDoman()}/lanmu/4.html">
+	                        	<p class="gj_bj"></p>报名时间
+	                        </a>
+                        </li>
+                        <li>
+	                        <a href="{:getDoman()}/school.html">
+	                        	<p class="gj_bj"></p>自考院校
+	                        </a>
+                        </li>
+                        <li>
+	                        <a href="{:getDoman()}/zhuanye.html">
+	                        	<p class="gj_bj"></p>自考专业
+	                        </a>
+                        </li>
+                        <li>
+	                        <a href="{:getDoman()}/lanmu/12.html">
+	                        	<p class="gj_bj"></p>网上报名
+	                        </a>
+                        </li>
+                        <li>
+	                        <a href="{:getDoman()}/lanmu/13.html">
+	                        	<p class="gj_bj"></p>NIT报名
+	                        </a>
+                        </li>
+                        <li>
+	                        <a href="{:getDoman()}/lanmu/22.html">
+	                        	<p class="gj_bj"></p>成绩查询
+	                        </a>
+                        </li>
+                        <li>
+	                        <a href="{:getDoman()}/lanmu/59.html">
+	                        	<p class="gj_bj"></p>毕业就业
+	                        </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="zklmdh">
+        <div class="zk_lm">
+            <ul>
+                <li class="fast" id="zk_news1" onmouseover="setTab('zk_news',1,4)"><h2><a href="{:getDoman()}/lanmu/2.html">自考考试</a></h2></li>
+                <li id="zk_news2" onmouseover="setTab('zk_news',2,4)"><h2><a href="{:getDoman()}/lanmu/3.html">自考真题</a></h2></li>
+                <li id="zk_news3" onmouseover="setTab('zk_news',3,4)"><h2><a href="{:getDoman()}/lanmu/34.html">学士学位</a></h2></li>
+                <li id="zk_news4" onmouseover="setTab('zk_news',4,4)"><h2><a href="{:getDoman()}/lanmu/31.html">自考毕业</a></h2></li>
+            </ul>
+            <div class="line"></div>
+        </div>
+        <!--考试动态-->
+        <div class="ksdt" id="con_zk_news_1">
+            <div class="ksdt_left">
+                <div class="ksdt_left_top">
+                    <div class="ksdt_left_top_left">
+                        <a href="{:getDoman()}/wsbm.html" title="安徽自学考试网上报名入口"><img src="{:getDoman()}/images/sybm.png" alt="安徽自考网上报名"/></a>
+                    </div>
+                    <div class="ksdt_left_top_right">
+                        <p><a href="{:getDoman()}/lanmu/14.html">考试动态</a></p>
+						<ul>
+							{volist name=":getArctile(['status'=>1,'category_id'=>14],'sort asc,add_time desc','id,name,add_time,cover_id',5)" id="vo" key="k"}
+							    <li>
+							    	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}" class="sy_nr3">{$vo.name}</a>
+							    	<span>{:str2date($vo.add_time,'m-d');}</span>
+							    </li>
+							{/volist}
+						</ul>
+                    </div>
+                </div>
+                <div class="ksdt_left_bottom">
+                    <div class="ks_ty">
+                            {volist name=":getCategory(['id'=>15])" id="vo" length=1}
+                                <h3><a href="{:getDoman()}/lanmu/15.html"class="hui">{$vo.name}</a></h3>
+                            {/volist}
+                            <ul>
+                                {volist name=":getArctile(['status'=>1,'category_id'=>15],'sort asc,add_time desc','id,name,add_time,cover_id',4)" id="vo" key="k"}
+                                    <li>
+                                    	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}" class="sy_nr3">{$vo.name}</a>
+                                    	<span>{:str2date($vo.add_time,'m-d');}</span>
+                                    </li>
+                                {/volist}
+                            </ul>
+                    </div>
+                    <div class="ks_ty yy">
+                            {volist name=":getCategory(['id'=>16])" id="vo" length=1}
+                                <h3><a href="{:getDoman()}/lanmu/16.html"class="hui">{$vo.name}</a></h3>
+                            {/volist}
+                            <ul>
+                                {volist name=":getArctile(['status'=>1,'category_id'=>16],'sort asc,add_time desc','id,name,add_time,cover_id',4)" id="vo" key="k"}
+                                    <li>
+                                    	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}" class="sy_nr3">{$vo.name}</a>
+                                    	<span>{:str2date($vo.add_time,'m-d')}</span>
+                                    </li>
+                                {/volist}
+                            </ul>
+                    </div>
+                    <div class="ks_ty jy">
+                            {volist name=":getCategory(['id'=>17])" id="vo" length=1}
+                                <h3><a href="{:getDoman()}/lanmu/17.html"class="hui">{$vo.name}</a></h3>
+                            {/volist}
+                            <ul>
+                                {volist name=":getArctile(['status'=>1,'category_id'=>17],'sort asc,add_time desc','id,name,add_time,cover_id',4)" id="vo" key="k"}
+                                    <li>
+                                    	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}" class="sy_nr3">{$vo.name}</a>
+                                    	<span>{:str2date($vo.add_time,'m-d')}</span>
+                                    </li>
+                                {/volist}
+                            </ul>
+                    </div>
+                    <div class="ks_ty yy jy">
+                            {volist name=":getCategory(['id'=>22])" id="vo" length=1}
+                                <h3><a href="{:getDoman()}/lanmu/22.html"class="hui">{$vo.name}</a></h3>
+                            {/volist}
+                            <ul>
+                                {volist name=":getArctile(['status'=>1,'category_id'=>22],'sort asc,add_time desc','id,name,add_time,cover_id',4)" id="vo" key="k"}
+                                    <li>
+                                    	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}" class="sy_nr3">{$vo.name}</a>
+                                    	<span>{:str2date($vo.add_time,'m-d')}</span>
+                                    </li>
+                                {/volist}
+                            </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="ksdt_right">
+                <div class="ksdt_right_top">
+                    <a href="{:getDoman()}" title="学历"><img src="{:getDoman()}/images/xueli.png" alt="学历"/></a>
+                </div>
+                <div class="ksdt_right_bottom">
+                    <p>
+                        <a href="{:getDoman()}/info/141.html" title="什么是NIT?"><img src="{:getDoman()}/images/nit.png" alt="NIT证书"/><span>什么是nit?</span></a>
+                    </p>
+                    <ul class="ul">
+                      {volist name=":getArctile(['status'=>1,'category_id'=>13],'sort asc,add_time desc','id,name,add_time,cover_id',6)" id="vo" key="k"}
+                        <li>
+                        	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}" class="sy_nr8">{$vo.name}</a>
+                        </li>
+                      {/volist}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- 自考真题 -->
+        <div class="zktylm hide" id="con_zk_news_2">
+            <div class="zktylm_ty right_xian">
+                <div class="zktylm_ty_lm">
+                    {volist name=":getCategory(['id'=>37])" id="vo" length=1}
+                        <h3><a href="{:getDoman()}/lanmu/37.html">{$vo.name}</a></h3>
+                        <font><span><a href="{:getDoman()}/lanmu/37.html"><更多></a></span></font>
+                    {/volist}
+                </div>
+                <ul>
+                    {volist name=":getArctile(['status'=>1,'category_id'=>37],'create_time desc','id,name,add_time,cover_id',10)" id="vo" key="k"}
+                        <li>
+                        	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}" class="sy_nr5">{$vo.name}</a>
+                        	<span>{:str2date($vo.add_time,'m-d')}</span>
+                        </li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="zktylm_ty xian">
+                <div class="zktylm_ty_lm">
+                    {volist name=":getCategory(['id'=>35])" id="vo" length=1}
+                        <h3><a href="{:getDoman()}/lanmu/35.html">{$vo.name}</a></h3>
+                        <font><span><a href="{:getDoman()}/lanmu/35.html"><更多></a></span></font>
+                    {/volist}
+                </div>
+                <ul>
+                    {volist name=":getArctile(['status'=>1,'category_id'=>35],'sort asc,add_time desc','id,name,add_time,cover_id',10)" id="vo" key="k"}
+                        <li>
+                        	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}" class="sy_nr5">{$vo.name}</a>
+                        	<span>{:str2date($vo.add_time,'m-d')}</span>
+                        </li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="zktylm_ty left_xian">
+                <div class="zktylm_ty_lm">
+                    {volist name=":getCategory(['id'=>36])" id="vo" length=1}
+                        <h3><a href="{:getDoman()}/lanmu/36.html">{$vo.name}</a></h3>
+                        <font><span><a href="{:getDoman()}/lanmu/36.html"><更多></a></span></font>
+                    {/volist}
+                </div>
+                <ul>
+                    {volist name=":getArctile(['status'=>1,'category_id'=>36],'sort asc,add_time desc','id,name,add_time,cover_id',10)" id="vo" key="k"}
+                        <li>
+                        	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}" class="sy_nr5">{$vo.name}</a>
+                        	<span>{:str2date($vo.add_time,'m-d')}</span>
+                        </li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+    <!-- 学士学位 -->
+        <div class="zktylm hide" id="con_zk_news_3">
+            <div class="zktylm_ty right_xian">
+                <div class="zktylm_ty_lm">
+                    {volist name=":getCategory(['id'=>55])" id="vo" length=1}
+                        <h3><a href="{:getDoman()}/lanmu/55.html">{$vo.name}</a></h3>
+                        <font><span><a href="{:getDoman()}/lanmu/55.html"><更多></a></span></font>
+                    {/volist}
+                </div>
+                <ul>
+                    {volist name=":getArctile(['status'=>1,'category_id'=>55],'sort asc,add_time desc','id,name,add_time,cover_id',10)" id="vo" key="k"}
+                        <li>
+                        	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}" class="sy_nr5">{$vo.name}</a>
+                        	<span>{:str2date($vo.add_time,'m-d')}</span>
+                        </li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="zktylm_ty xian">
+                <div class="zktylm_ty_lm">
+                    {volist name=":getCategory(['id'=>56])" id="vo" length=1}
+                        <h3><a href="{:getDoman()}/lanmu/56.html">{$vo.name}</a></h3>
+                        <font><span><a href="{:getDoman()}/lanmu/56.html"><更多></a></span></font>
+                    {/volist}
+                </div>
+                <ul>
+                    {volist name=":getArctile(['status'=>1,'category_id'=>56],'add_time desc','id,name,add_time,cover_id',10)" id="vo" key="k"}
+                        <li>
+                        	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}" class="sy_nr5">{$vo.name}</a>
+                        	<span>{:str2date($vo.add_time,'m-d')}</span>
+                        </li>
+                    {/volist}
+                </ul>
+             </div>
+            <div class="zktylm_ty left_xian">
+                <div class="zktylm_ty_lm">
+                    {volist name=":getCategory(['id'=>57])" id="vo" length=1}
+                        <h3><a href="{:getDoman()}/lanmu/57.html">{$vo.name}</a></h3>
+                        <font><span><a href="{:getDoman()}/lanmu/57.html"><更多></a></span></font>
+                    {/volist}
+                </div>
+                <ul>
+                    {volist name=":getArctile(['status'=>1,'category_id'=>57],'add_time desc','id,name,add_time,cover_id',10)" id="vo" key="k"}
+                        <li>
+                        	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}" class="sy_nr5">{$vo.name}</a>
+                        	<span>{:str2date($vo.add_time,'m-d')}</span>
+                        </li>
+                    {/volist}
+                </ul>    
+            </div>
+        </div>
+        <!-- 自考毕业 -->
+        <div class="zktylm hide" id="con_zk_news_4">
+            <div class="zktylm_ty right_xian">
+                <div class="zktylm_ty_lm">
+                    {volist name=":getCategory(['id'=>54])" id="vo" length=1}
+                        <h3><a href="{:getDoman()}/lanmu/54.html">{$vo.name}</a></h3>
+                        <font><span><a href="{:getDoman()}/lanmu/54.html"><更多></a></span></font>
+                    {/volist}
+                </div>
+                <ul>
+                    {volist name=":getArctile(['status'=>1,'category_id'=>54],'add_time desc','id,name,add_time,cover_id',10)" id="vo" key="k"}
+                        <li>
+                        	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}" class="sy_nr5">{$vo.name}</a>
+                        	<span>{:str2date($vo.add_time,'m-d')}</span>
+                        </li>
+                    {/volist}
+                </ul>
+             </div>
+            <div class="zktylm_ty xian">
+                <div class="zktylm_ty_lm">
+                    {volist name=":getCategory(['id'=>61])" id="vo" length=1}
+                        <h3><a href="{:getDoman()}/lanmu/61.html">{$vo.name}</a></h3>
+                        <font><span><a href="{:getDoman()}/lanmu/61.html"><更多></a></span></font>
+                    {/volist}
+                  
+                </div>
+                <ul>
+                    {volist name=":getArctile(['status'=>1,'category_id'=>61],'add_time desc','id,name,add_time,cover_id',10)" id="vo" key="k"}
+                        <li>
+                        	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}" class="sy_nr5">{$vo.name}</a>
+                        	<span>{:str2date($vo.add_time,'m-d')}</span>
+                        </li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="zktylm_ty left_xian">
+                <div class="zktylm_ty_lm">
+                    {volist name=":getCategory(['id'=>59])" id="vo" length=1}
+                        <h3><a href="{:getDoman()}/lanmu/59.html">{$vo.name}</a></h3>
+                        <font><span><a href="{:getDoman()}/lanmu/59.html"><更多></a></span></font>
+                    {/volist}
+                  
+                </div>
+                <ul>
+                    {volist name=":getArctile(['status'=>1,'category_id'=>59],'add_time desc','id,name,add_time,cover_id',10)" id="vo" key="k"}
+                        <li>
+                        	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}" class="sy_nr5">{$vo.name}</a>
+                        	<span>{:str2date($vo.add_time,'m-d')}</span>
+                        </li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+    </div> 
+    <div id="zkzs">
+        <h2 class="school_boxp"><a href="{:getDoman()}/lanmu/32.html">自考证书</a></h2>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {volist name=":getArctile(['status'=>1,'category_id'=>32],'sort asc,add_time desc','id,name,cover_id,create_time',8)" id="vo" key="k"}
+                    <div class="swiper-slide item-zk-box">
+                        <a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="{$vo.name}">
+                        	<img src="{:getDoman()}{$vo.cover_id|get_picture_url}" alt="{$vo.name}"/>
+                        </a>
+                    </div>
+                {/volist}
+            </div>
+        </div>
+    </div>
+    <div class="yqlj">
+        <p class="yqlj1">友情链接</p>
+        <p class="yqlj2">
+			{volist name="links" id="vo"}
+				<a href="{$vo.url}">{$vo.name}</a>
+			{/volist}
+        </p>
+    </div>
+</div>
+{/block}
+{block name="script"}
+{__block__}
+<script type="text/javascript" src="{:getDoman()}/js/swiper.min.js"></script>
+<script type="text/javascript">
+	//首页轮播
+    var swiper = new Swiper('#sy_bodytop .banner .swiper-container', {
+      spaceBetween: 30,
+      centeredSlides: true,
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: true,
+      },
+      pagination: {
+        el: '#sy_bodytop .banner .swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+    //专业轮播
+    var swiper = new Swiper('.zy_list .swiper-container', {
+      slidesPerView: 4,
+      spaceBetween: 30,
+      autoplay: {
+        delay: 1800,
+        disableOnInteraction: true,
+      }
+    })
+    //自考证书
+    var swiper = new Swiper('#zkzs .swiper-container', {
+      slidesPerView: 4,
+      spaceBetween: 30,
+      autoplay: {
+        delay: 1800,
+        disableOnInteraction: false,
+      }
+    })
+	wordlimit('sy_nr1',18);
+    wordlimit('sy_nr2',15);
+    wordlimit('sy_nr3',20);
+    wordlimit('sy_nr4',20);
+    wordlimit('sy_nr5',20);
+    wordlimit('sy_nr6',22);
+    wordlimit('sy_nr7',15);
+    wordlimit('sy_nr8',11);
+    Countdown("{:config('test_time')}");
+    $(document).ready(function(){
+      $(".schoolimg").eq(0).show();
+      $(".zy_list").eq(0).show();
+      $(".school_name a").hover(function(){
+       $i=$(this).index(".school_name a");
+
+       $(".school_name a").eq($i).addClass("school_on")
+      .siblings(".school_name a").removeClass("school_on");
+
+      $(".schoolimg").eq($i).show()
+      .siblings(".schoolimg").hide();
+       
+       $(".zy_list").eq($i).show()
+      .siblings(".zy_list").hide();
+
+      });
+    });
+
+    /*处理预约*/
+    $(".confirm_btn").on('click',function(){
+      var data = $(".feedback").serializeArray();
+      var jsonData = {}
+      $.each(data,function(i,o){
+        jsonData[data[i]['name']] = data[i]['value'];
+      })
+      
+      if(jsonData.name.length == 0){
+        $("input[name='name']").css('border','1px solid red');
+        return false;
+      }else{
+        $("input[name='name']").css('border','1px solid #ccc');
+      }
+      if(!/^1[34578]\d{9}$/.test(jsonData.tel)){
+        $("input[name='tel']").css('border','1px solid red');
+        alert('请填写正确的手机号码');
+        return false;
+      }else{
+        $("input[name='tel']").css('border','1px solid #ccc');
+      }
+      $.getJSON("{:getDoman()}/Apirefer",{jsonData},function(result){
+
+        alert(result.message)
+        if(result.code ==1){
+          $('.feedback')[0].reset();
+        }
+      });
+    })
+</script>
+{/block}

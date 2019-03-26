@@ -1,0 +1,48 @@
+{extend name="layout/base" /}
+{block name="title"}{:unicode_decode($Request.get.keyword)}-安徽自考网{/block}
+{block name="keywords"}{:unicode_decode($Request.get.keyword)},安徽自考网{/block}
+{block name="description"}安徽自考网服务广大自考生提供安徽自考网上报名、自学考试专业、自学考试院校,最新发布安徽自学考试报名时间、成绩查询、考试题库、自学考试问答尽在安徽自考网...{/block}
+{block name="css"}
+	<link rel="stylesheet" href="{:getDoman()}/css/gong.css">
+	<link rel="stylesheet" href="{:getDoman()}/css/list_2.css">
+{/block}
+{block name="content"}
+<div id="list_weizhi">
+    <div id="list_weizhi_1"></div>
+    <div id="list_weizhi_2">当前位置：<a href="{:getDoman()}" target="_self">安徽自考网</a>>搜索页>{:unicode_decode($Request.get.keyword)}</div>
+</div>
+<div id="list2_zhubox">
+    <div id="list2_zhubox_x">
+        {notempty name='data'}
+        <div id="list2_zhubox_x_left">
+            <ul class="ul">
+                {volist name="data" id="vo"}
+                    <li>
+                        <div class="list2_zhubox_bt">
+                            <h2><a href="{:getDoman()}{:url('index/index/info',['id'=>$vo['id']])}">{$vo.name}</a></h2>
+                            <span class="list2_zhubox_bt_sj">{$vo.add_time|mb_substr=0,10,'utf-8'}</span>
+                        </div>
+                        <p class="list2_zhubox_jj">
+                            <span class="content_box">{$vo.describe}...</span>
+                            <span class="list2_zhubox_bt_ckxq"><a href="{:getDoman()}{:url('index/index/info',['id'=>$vo['id']])}">[查看详情]</a></span>
+                        </p>
+                    </li>
+                {/volist}
+            </ul>
+            {$list->render()}
+        </div>
+        {else /}
+         <div style="text-align:center;margin-top:10px;">{:config('empty_list_describe')}</div>
+        {/notempty}
+        {block name="right_menu"}
+            {__block__}
+        {/block}
+    </div>
+</div>
+{/block}
+{block name="script"}
+{__block__}
+<script type="text/javascript">
+    wordlimit('content_box',100);
+</script>
+{/block}

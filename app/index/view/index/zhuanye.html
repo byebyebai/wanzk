@@ -1,0 +1,115 @@
+{extend name="layout/base" /}
+{block name="title"}安徽自考本科专业_安徽自考专科专业-安徽自考网{/block}
+{block name="keywords"}安徽自考本科专业,安徽自考专科专业,安徽自考网{/block}
+{block name="description"}安徽自考网服务广大安徽自考生提供安徽自考本科专业、安徽自考专科专业，包含经管类、法学类、教育类、工学类、机械类、农学类、医学类、艺术类等相关动态，全身心的为广大安徽自考生服务。{/block}
+{block name="css"}
+    <link rel="stylesheet" href="{:getDoman()}/css/gong.css">
+    <link rel="stylesheet" href="{:getDoman()}/css/list_4.css">
+    <meta itemprop="image" content="{:getDoman()}/images/5c21a752cdc32.jpg"/>
+{/block}
+{block name="content"}
+<div id="yx_weizhi">
+    <div id="yx_weizhi_1"></div>
+    <div id="yx_weizhi_2">当前位置：<a href="{:getDoman()}" target="_self">安徽自考网</a>&gt;<a href="{:getDoman()}/zhuanye.html">安徽自考专科专业_安徽自考本科专业</a></div>
+</div>
+<div id="yx_body">
+    <div id="yx_xz">
+        <p class="menu1">层次：
+            <a href="{:getDoman()}/zhuanye.html" class="blue" target="_self">全部</a>
+            <a href="javascript:void(0);">专科</a>
+            <a href="javascript:void(0);">本科</a>
+        </p>
+            	  
+
+        <p class="xian_right menu2">类别：
+            <a href="javascript:void(0);">经管类</a>
+            <a href="javascript:void(0);">法学类</a>
+            <a href="javascript:void(0);">教育类</a>
+            <a href="javascript:void(0);">理工类</a>
+            <a href="javascript:void(0);">文史类</a>
+            <a href="javascript:void(0);">医学类</a>
+            <a href="javascript:void(0);">艺术类</a>
+            <a href="javascript:void(0);">农学类</a>
+        </p>
+    </div>
+    <div id="yx_list_left"> 
+        	<ul>
+        	{notempty name="list"}
+            {volist name="list" id="vo"}	<li>
+                    <a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}">
+                    	<img src="{:getDoman()}{$vo.cover_id|get_picture_url}" alt="安徽{$vo.name}">
+                    	<span class="zynr">安徽{$vo.name}</span>
+                    </a>
+                    <p>
+                        <a class="yx_list_left_jsl1" href="{:getDoman()}/school.html" title="自考院校">自考院校</a>
+                        <a class="yx_list_left_jsl2" href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" title="专业详情">专业详情</a>
+                        <a class="yx_list_left_jsl3" href="{:getDoman()}/baoming.html" title="网上报名">网上报名</a>
+                    </p>
+                </li>
+            {/volist}
+            {else /}
+                <p style="text-align: center; margin-top: 15px;">没查到对应数据</p>{/notempty}</ul>
+    </div>
+    {block name="right_menu"}{__block__}{/block}
+    </div>
+</div>
+{/block}
+{block name="script"}
+{__block__}
+<script type="text/javascript" src="{:getDoman()}/js/index.js"></script>
+<script>    
+    //获取url参数
+    var $_GET = (function(){
+        var url = window.document.location.href.toString();
+        var u = url.split("?");
+        if(typeof(u[1]) == "string"){
+            u = u[1].split("&");
+            var get = {};
+            for(var i in u){
+                var j = u[i].split("=");
+                get[j[0]] = j[1];
+            }
+            return get;
+        } else {
+            return {};
+        }
+    })();
+</script>
+<script type="text/javascript" src="{:getDoman()}/js/school.js"></script>
+<script type="text/javascript">
+    function toUrl(keywords = '',keywords1=''){
+        var domain = document.domain;
+        if(keywords!= ''){
+            urldata = keywords;
+        }
+        if(keywords1 != ''){
+            urldata = keywords1;
+        }
+        if(keywords1!='' && keywords!=''){
+            urldata = keywords+"&"+keywords1;  
+        }
+        window.location.href = 'http://'+domain+"/zhuanye.html?"+urldata;
+    }
+</script>
+<script type="text/javascript">
+window.onload=
+    function(){
+        var oDiv = document.getElementById("youcefudong"),
+            H = 0,
+            Y = oDiv        
+        while (Y) {
+            H += Y.offsetTop; 
+            Y = Y.offsetParent;
+        }
+        window.onscroll = function()
+        {
+            var s = document.body.scrollTop || document.documentElement.scrollTop
+            if(s>H) {
+                oDiv.style = "position:fixed;top:3px;"
+            } else {
+                oDiv.style = ""
+            }
+        }
+    }
+</script>
+{/block}

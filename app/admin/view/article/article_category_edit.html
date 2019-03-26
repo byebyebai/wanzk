@@ -1,0 +1,182 @@
+<style type="text/css">
+  #address-check .form-control{
+    width: 45%;
+  }
+</style>
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>短名称</label>
+              <span>（短名称）</span>
+              <input class="form-control" name="name" placeholder="请输入文章分类短名称" value="{$info['name']|default=''}" type="text">
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>选择分类</label>
+              <span>（默认主分类）</span>
+              <select name="pid" id="" class="form-control category">
+                <option value="0">|  选择当前分类添加一级分类</option>
+                {volist name='article_category_list' id='vo'}
+                  {notempty name="$info"}
+                      <option value="{$vo['id']}" {if condition="$info['pid'] eq $vo['id']"} selected="selected"{/if}>|- {$vo['name']|default=''}</option>
+                    {/if}
+                    {else /}
+                     <option value="{$vo['id']}" {notempty name="$info['pid']"} {if condition="$info['id'] eq $vo['id']"} selected="selected" {/if}{/notempty}{notempty name="$Request.param.pid"}{if condition="$Request.param.pid eq $vo['id']"} selected="selected" {/if}{/notempty}>|- {$vo['name']|default=''}</option>
+                  {/notempty}
+                {/volist}
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>分类图片</label>
+                <span class="">（请上传单张封面图片）</span>
+                <br/>
+                {assign name="cover_id" value="$info.cover_id|default='0'" /}
+                {:widget('file/index', ['name' => 'cover_id', 'value' => $cover_id, 'type' => 'img'])}
+            </div>
+          </div>  
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>图标</label>
+              <span>（文章分类图标 仅后台显示）</span>
+                {assign name="icon" value="$info.icon|default=''" /}
+                {:widget('icon/index', ['name' => 'icon', 'value' => $icon])}
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>seo名称</label>
+              <span>（seo名称）</span>
+              <input class="form-control" name="seo_name" placeholder="请输入文章分类名称" value="{$info['seo_name']|default=''}" type="text">
+            </div>
+          </div>  
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>描述</label>
+                <span>（文章分类描述）</span>
+                <textarea class="form-control" name="describe" rows="3" placeholder="请输入文章分类描述">{$info['describe']|default=''}</textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>分类关键词</label>
+              <span>（分类关键词）</span>
+              <input class="form-control" name="keyword" placeholder="请输入文章分类名称" value="{$info['keyword']|default=''}" type="text">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>选择模板</label>
+              <span class="">（请选择模板）</span>
+            </div>
+            <input class="flat-grey" type="radio" name="template" value="1" {notempty name="$info['template']"} {if condition="$info['template'] eq 1"}checked{/if}{/notempty}>默认模板
+            <input class="flat-grey" type="radio" name="template" value="2" {notempty name="$info['template']"} {if condition="$info['template'] eq 2"}checked{/if}{/notempty}>多分类模板
+            <input class="flat-grey" type="radio" name="template" value="3" {notempty name="$info['template']"} {if condition="$info['template'] eq 3"}checked{/if}{/notempty}>学校模板
+          </div>
+          </div>
+        </div>
+      <div class="col-md-6 school" id="address-check">
+        <div class="form-group">
+          <label>地区选择</label>
+          <span class="">（请选择地区选择）</span>
+        </div>
+        <select name="sheng" class="col-md-3 form-control province">
+          <option value="">请选择省份</option>
+          {notempty name="$info['sheng']"}
+            <option value="{$info.sheng}" selected="selected">{:getAddressNameById($info['sheng'])}</option>
+          {/notempty}
+        </select>
+        <select name="shi" class="col-md-3 form-control city">
+          <option value="">请选择市、区</option>
+          {notempty name="$info['shi']"}
+            <option value="{$info.shi}" selected="selected">{:getAddressNameById($info['shi'])}</option>
+          {/notempty}
+        </select>
+        <!-- <select name="qu" class="col-md-2 form-control">
+          <option value="">请选择地区</option>
+        </select> -->
+      </div>
+      <div class="col-md-6 school">
+          <div class="form-group">
+            <label>层次</label>
+            <span>（学校层次）</span>
+            <input class="form-control" name="level" placeholder="请输入学校层次 大专、本科" value="{$info['level']|default=''}" type="text">
+          </div>
+        </div>
+      {notempty name="$info"}
+      
+      <div class="row school" {if condition="$info['pid'] eq 6"}style="display:block;" {else /}style="display:none;"{/if}>
+          <div class="col-md-12">
+            <div class="form-group">
+                <label>学校信息</label>
+                <textarea class="form-control textarea_editor" name="content" placeholder="请输入学校信息">{$info.content}</textarea>
+                {:widget('editor/index', array('name'=> 'content','value'=> ''))}
+            </div>
+          </div>   
+        </div>
+        {else /}
+        <div class="row school" style="display:none;">
+          <div class="col-md-12">
+            <div class="form-group">
+                <label>学校信息</label>
+                <textarea class="form-control textarea_editor" name="content" placeholder="请输入学校信息"></textarea>
+                {:widget('editor/index', array('name'=> 'content','value'=> ''))}
+            </div>
+          </div>  
+        </div>
+      {/notempty}   
+      <div class="box-footer">
+          
+        <input type="hidden" name="id" value="{$info['id']|default='0'}"/>
+        
+        {include file="layout/edit_btn_group"/}
+        
+      </div>
+        
+      </div>
+</form>
+<script type="text/javascript">
+  var val = $(".category option:selected").val();
+  commonfunc(val);
+  $('.category').on('change',function(){
+    var val = $(".category option:selected").val();
+    commonfunc(val);
+  })
+  function commonfunc(val){
+    if(val == 6){
+      $('.school').show();
+    }else{
+      $('.school').hide();
+    }
+  }
+
+$.post("{:url('article/getProvince')}",{},function(data){
+    var html = ''
+    $.each(data,function(n,item){
+      html += "<option value="+item.Id+">"+item.name+"</option>"
+    })
+    $("#address-check .province").append(html);
+},"json");
+$("#address-check .province").change(function(){
+    getMoreAddress($(this));
+})
+
+function getMoreAddress(obj){
+  $("#address-check .city").html('<option value="">请选择市、区</option>');
+    var pid = obj.find('option:selected').val();
+
+    $.post("{:url('article/getCity')}",{pid:pid},function(data){
+        var html = ''
+        $.each(data,function(n,item){
+          html += "<option value="+item.Id+">"+item.name+"</option>"
+        })
+        $("#address-check .city").html(html);
+    },"json");
+}
+</script>

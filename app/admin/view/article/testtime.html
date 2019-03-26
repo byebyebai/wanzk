@@ -1,0 +1,25 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>报名时间设置</label>
+                <span class="">（自定义）</span>
+                <input class="form-control" name="registration_time" placeholder="2018-10-29" value="{$info['registration_time']|default='未定义'}" type="text">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>考试时间设置</label>
+                <span class="">（自定义）</span>
+                <input class="form-control" name="test_time" placeholder="请输入发布时间" value="{$info['test_time']|default='未定义'}" type="text">
+            </div>
+          </div>
+        </div>    
+      <div class="box-footer">
+        {include file="layout/edit_btn_group"/}
+      </div>
+      </div>
+    </div>
+</form>

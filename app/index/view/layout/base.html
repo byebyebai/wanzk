@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{block name="title"}-安徽自考网{/block}</title>
+	<meta name="keywords" content="{block name='keywords'}{/block}"/>
+	<meta name="description" content="{block name='description'}{/block}" />{block name="css"}{/block}	<link rel="canonical" href="http://{$Request.host}{$Request.url}">
+    <script type="text/javascript" charset="UTF-8" src="http://scripts.easyliao.com/8841/28397.js"></script>
+	<base target="_blank">
+</head>
+<!--这位看代码的朋友您好，如发现本网站有哪些地方做的不好，欢迎给我们进行指点反馈:QQ1227243923，谢谢-->
+<body>
+{block name="top"}
+    <div id="top">
+        <div id="topnei">
+            <div class="top_l">
+            	<span class="top_i1">欢迎进入<a href="{:getDoman()}" title="安徽自考网">安徽自考网</a>！</span>
+            	<span class="top_i2"></span>
+            </div>
+            <div class="top_r"><a href="javascript:void(0);" onclick="AddFavorite(window.location,document.title)">加入收藏</a>丨<a href="{:getDoman()}/sitemap.html">网站地图</a></div>
+        </div>
+    </div>
+{/block}
+{block name="head"}
+    <div id="head">
+        <div id="headtop">
+            <a class="logo" href="{:getDoman()}" title="安徽自考网">安徽自考网</a>
+            <div class="sosuo">
+                <form id="search" action="/search" method="get" target="_self">
+                    <input type="text" name="keyword" class="search_content" value="{$Request.get.keyword|unicode_decode}" placeholder="请输入搜索内容..." />
+                    <button type="button" class="ss search_btn"></button>
+                </form>
+            </div>
+        </div>
+        <div id="dh">
+            <ul>
+                <li><a href="{:getDoman()}" title="安徽自考网" target="_self">自考首页</a></li>
+                <li><a href="{:getDoman()}/lanmu/1.html" title="安徽自考报名" target="_self">自考报名</a></li>
+                <li><a href="{:getDoman()}/school.html" title="安徽自考院校" target="_self">自考院校</a></li>
+                <li><a href="{:getDoman()}/zhuanye.html" title="安徽自考专业" target="_self">自考专业</a></li>
+                <li><a href="{:getDoman()}/wsbm.html" title="安徽自考网上报名">网上报名</a></li>
+                <li><a href="{:getDoman()}/lanmu/3.html" title="安徽自考历年真题" target="_self">历年真题</a></li>
+                <li><a href="{:getDoman()}/lanmu/2.html" title="安徽自学考试" target="_self">自考考试</a></li>
+                <li><a href="{:getDoman()}/lanmu/31.html" title="安徽自考毕业" target="_self">自考毕业</a></li>
+            </ul>
+        </div>
+        <div id="dqh">
+	        <div id="dq">
+	         	各地区自考：
+	         	<a href="{:getDoman()}/lanmu/39.html">合肥</a>丨
+	         	<a href="{:getDoman()}/lanmu/40.html">芜湖</a>丨
+	         	<a href="{:getDoman()}/lanmu/41.html">淮南</a>丨
+	         	<a href="{:getDoman()}/lanmu/42.html">安庆</a>丨
+	         	<a href="{:getDoman()}/lanmu/43.html">黄山</a>丨
+	         	<a href="{:getDoman()}/lanmu/44.html">铜陵</a>丨
+	         	<a href="{:getDoman()}/lanmu/45.html">淮北</a>丨
+	         	<a href="{:getDoman()}/lanmu/46.html">蚌埠</a>丨
+	         	<a href="{:getDoman()}/lanmu/47.html">宣城</a>丨
+	         	<a href="{:getDoman()}/lanmu/48.html">亳州</a>丨
+	         	<a href="{:getDoman()}/lanmu/49.html">六安</a>丨
+	         	<a href="{:getDoman()}/lanmu/50.html">马鞍山</a>丨
+	         	<a href="{:getDoman()}/lanmu/51.html">宿州</a>丨
+	         	<a href="{:getDoman()}/lanmu/52.html">阜阳</a>丨
+	         	<a href="{:getDoman()}/lanmu/53.html">池州</a>
+	        </div>
+        </div>
+    </div>
+{/block}
+<!-- 内容区域 -->
+{block name="content"}
+    {block name="right_menu"}
+        <div id="neirong_zhutibox_right">
+            <div id="neirong_zhutibox_right_s">
+                <div id="neirong_zhutibox_right_s1">安徽自考时间安排</div>
+                <div id="neirong_zhutibox_right_s2">
+                    <p style="color:#5e96fd;" class="registration_time_date"></p>
+                	<p><span class="neirong_haisheng">还剩</span><span class="neirong_riqitu" id="registrationDay"></span>天</p>
+                	<p style="color:#F00;" class="getTestTime_date"></p>
+                	<p><span class="neirong_haisheng">还剩</span><span class="neirong_riqitu" id="getTestTimeDay"></span>天</p>
+                </div>
+            </div>
+            <div id="neirong_zhutibox_right_z">
+                <p id="neirong_zhutibox_rmzy">热门专业排行榜：</p>
+                <ul>
+                    {volist name=":getArctile(['status'=>1,'category_id'=>8],'hits desc','id,name,create_time,cover_id,hits',8)" id="vo" key="k"}
+                        <li>
+                            <span id="neirong_rmzy_zs1">NO{$k}.</span>
+                            <span id="neirong_rmzy_zs2">访问 {$vo.hits} 次</span><br/>
+                            <a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" id="neirong_rmzy_zs3" class="clnr1">{$vo.name}</a>
+                        </li>
+                    {/volist}
+                </ul>
+            </div>
+            <div id="youcefudong">
+	            <div id="neirong_zhutibox_right_x">
+	                <ul>
+	                    <li><div id="one1" onmouseover="setTab('one',1,2)">热门文章</div></li>
+	                    <li><div id="one2" onmouseover="setTab('one',2,2)" class="hover">最新动态</div></li>
+	                </ul>
+	            </div>
+	            <div id="con_one_1">
+	                <ul>
+	                    {volist name=":getArctile(['status'=>1],'hits desc','id,name,create_time,add_time',10)" id="vo" key="k"}
+	                        <li>
+	                        	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" class="clnr2" title="{$vo.name}">{$vo.name}</a>
+	                        	<span class="neirongye_right_riqi">{$vo.create_time|date="m-d",###}</span>
+	                        </li>
+	                    {/volist}
+	                </ul>
+	            </div>
+	            <div id="con_one_2" style="display:none">
+	                <ul>
+	                    {volist name=":getArctile(['status'=>1],'create_time desc','id,name,create_time,add_time',10)" id="vo" key="k"}
+	                        <li>
+	                        	<a href="{:getDoman()}{:url('index/index/info',['id'=>$vo.id])}" class="clnr2" title="{$vo.name}">{$vo.name}</a>
+	                        	<span class="neirongye_right_riqi">{$vo.create_time|date="m-d",###}</span>
+	                        </li>
+	                    {/volist}
+	                </ul>
+	            </div>
+	            <div class="neirong_wx">
+	            	<div class="neirong_wxwz">扫一扫关注微信公众号</span></div>
+	            	<div class="neirong_wxtu"></div>
+	        	</div>
+        	</div>
+    	</div>
+    {/block} 
+{/block}
+<!-- script -->
+{block name="script"}
+<script type="text/javascript" src="{:getDoman()}/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="{:getDoman()}/js/index.js"></script>
+<script type="text/javascript">
+	function addFavorite2() {
+	    var url = window.location;
+	    var title = document.title;
+	    var ua = navigator.userAgent.toLowerCase();
+	    if (ua.indexOf("360se") > -1) {
+	        alert("由于360浏览器功能限制，请按 Ctrl+D 手动收藏！");
+	    }
+	    else if (ua.indexOf("msie 8") > -1) {
+	        window.external.AddToFavoritesBar(url, title); //IE8
+	    }
+	    else if (document.all) {
+	  try{
+	   window.external.addFavorite(url, title);
+	  }catch(e){
+	   alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');
+	  }
+	    }
+	    else if (window.sidebar) {
+	        window.sidebar.addPanel(title, url, "");
+	    }
+	    else {
+	  alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');
+	    }
+	}
+
+	function AddFavorite(sURL, sTitle) {
+        var sTitle =" ";                       //sTitle：添加到收藏夹中的网站页面标题名称。
+        var sURL = location.href;              //sURL：添加到收藏夹的完整网站页面地址
+        try {
+            window.external.addFavorite(sURL, sTitle);//IE浏览器
+        }
+        catch (e) {
+            try {
+                window.sidebar.addPanel(sTitle, sURL, "");//Firefox浏览器
+            }
+            catch (e) {
+                alert("加入收藏失败，请使用Ctrl+D进行添加");
+            }
+        }
+}
+	wordlimit('clnr1',12);
+    wordlimit('clnr2',8);
+    wordlimit('zynr',13);
+    function submitData(){
+        var form = $("#index_form").serializeArray();
+        var jsonData = {}
+        $.each(form,function(i,o){
+            jsonData[form[i]['name']] = form[i]['value'];
+        })
+        if(jsonData.name.length == 0){
+            $("input[name='name']").css('border','1px solid red');
+            return false;
+        }else{
+            $("input[name='name']").css('border','1px solid #e0e0e0');
+        }
+        if(!/^1[34578]\d{9}$/.test(jsonData.tel)){
+            $("input[name='tel']").css('border','1px solid red');
+            return false;
+        }else{
+            $("input[name='tel']").css('border','1px solid #e0e0e0');
+        }
+        $.getJSON("{:getDoman()}/Apirefer",{jsonData},function(result){
+            if(result.code ==1){
+                alert(result.message);
+                document.getElementById("index_form").reset();
+            }
+        });
+    }
+
+    function encodeUnicode(str) {
+        var res = [];      
+        for ( var i=0; i<str.length; i++ ) {
+            res[i] = ( "00" + str.charCodeAt(i).toString(16) ).slice(-4);      
+        }
+        return "\\u" + res.join("\\u");
+    }
+        //搜索关键词
+    $('.sosuo .search_btn').on('click',function(){
+        var keyword = $('.search_content').val();
+
+        if(keyword.length<1){
+            alert('关键字不能为空');return false;
+        }else{
+            console.log(keyword)
+            window.location.href = "{:getDoman()}/search?keyword="+encodeUnicode(keyword);
+        }
+    })
+    $("#headtop .sosuo").bind('keydown',function(e){
+        if(e.keyCode  == "13"){
+
+
+            var keyword = $('.search_content').val();
+            if(keyword.length<1){
+                alert('关键字不能为空');return false;
+            }else{
+                $("#search").submit();
+            }
+        }
+    })
+	
+	$.get("/getTestTime",{},function(result){
+
+		if(result!=null){
+			$(".getTestTime_date").html('考试时间:'+result.date1);
+			$("#getTestTimeDay").html(result.day1);
+		}
+    },'JSON');
+	
+	$.get("/registration_time",{},function(result){
+		if(result!=null){
+			$(".registration_time_date").html('报名时间:'+result.date);
+			$("#registrationDay").html(result.day);
+		}
+    },'JSON');
+    
+    
+</script>
+{/block}
+<!-- 底部 -->
+{block name="footer"}
+    <div id="footer">
+     <div id="footer_n">
+        <div class="footer_l">
+	        <p class="fdh">
+	        	<a href="{:getDoman()}" class="fast">安徽自考网</a>-
+	        	<a href="{:getDoman()}/school.html">自考院校</a>-
+	        	<a href="{:getDoman()}/zhuanye.html">自考专业</a>-
+	        	<a href="{:getDoman()}/lanmu/1.html">自考报名</a>-
+	        	<a href="{:getDoman()}/wsbm.html">网上报名</a>-
+	        	<a href="{:getDoman()}/lanmu/3.html">历年真题</a>-
+	        	<a href="{:getDoman()}/lanmu/2.html">自考考试</a>-
+	        	<a href="{:getDoman()}/lanmu/31.html">自考毕业</a>-
+              	<a href="{:getDoman()}/sitemap.html">网站地图</a>-
+              	<a href="{:getDoman()}">联系我们</a>
+	        </p>
+	        <p>各地市自考：
+	        	<a href="{:getDoman()}/lanmu/39.html">合肥自考</a>丨
+	         	<a href="{:getDoman()}/lanmu/40.html" >芜湖自考</a>丨 
+	         	<a href="{:getDoman()}/lanmu/41.html">淮南自考</a>丨
+	         	<a href="{:getDoman()}/lanmu/42.html">安庆自考</a>丨
+	         	<a href="{:getDoman()}/lanmu/43.html">黄山自考</a>丨
+	         	<a href="{:getDoman()}/lanmu/44.html">铜陵自考</a>丨
+	         	<a href="{:getDoman()}/lanmu/45.html">淮北自考</a>丨
+	         	<a href="{:getDoman()}/lanmu/46.html">蚌埠自考</a>丨
+	         	<a href="{:getDoman()}/lanmu/47.html">宣城自考</a>丨
+	         	<a href="{:getDoman()}/lanmu/48.html">亳州自考</a>丨
+	         	<a href="{:getDoman()}/lanmu/49.html">六安自考</a>丨
+	         	<a href="{:getDoman()}/lanmu/50.html">马鞍山自考</a>丨
+	         	<a href="{:getDoman()}/lanmu/51.html">宿州自考</a>丨
+	         	<a href="{:getDoman()}/lanmu/52.html">阜阳自考</a>丨
+	         	<a href="{:getDoman()}/lanmu/53.html">池州自考</a>
+	        </p>
+	        <p>地址：江西省南昌市西湖区丁公路125号科学机械研究所3楼</p>
+	        <p>版权所有：安徽自学考试网 Copyright 2016-2019 All Rights Reserved 法律顾问：章律师</p>
+	        <p>技术支持：安徽自学考试技术团队 服务电话：0791-87875683(办) 备案号：<a href="http://www.miitbeian.gov.cn/" rel="nofollow">赣ICP备18012678号-1</a></p>
+        </div>
+     </div>
+    </div>
+<div class="right-fixed">
+	<div class="fixed-list">
+		<div class="online pr fixed-li">
+			<div class="btn-hide">在线<br>报名</div>
+			<div class="hide-online bor-zi1">
+				<div class="form-iconli">
+					<ul class="clearfix">
+						<li><i class="icon1"></i><p class="teal-cen">网上报名</p></li>
+						<li><i class="icon2"></i><p class="teal-cen">免费资料</p></li>
+						<li><i class="icon3"></i><p class="teal-cen">信息保密</p></li>
+					</ul>
+				</div>
+				<div class="form-hide-main font14 hide-mat-top1 form-main">
+					<form id="index_form">
+						<div class="pr form-div">
+							<label><span class="col-ff0 font16">*</span>姓名：</label>
+							<input type="text" placeholder="请填写您的姓名" name="name" class="name">
+							<div class="form-sex clear-fix sex-pa">
+								<input type="radio" name="sex" value="男" checked="checked">男
+								<input type="radio" name="sex" value="女">女
+							</div>
+						</div>
+						<div class="pr form-div">
+							<label><span class="col-ff0 font16">*</span>手机：</label>
+							<input type="text" placeholder="请输入您的手机" name="tel" class="tel">
+						</div>
+						<div class="form-div pr">
+							<label><span class="col-fff font16">*</span>留言：</label>
+							<input type="text" placeholder="请阐述您的问题" name="content" style="width: 388px;">
+							<span class="error font12 hide-error"></span>
+						</div>
+						<div class="form-hide-btn clearfix">
+							<input type="button" class="zi-btn btn-shadow fl border-rad3 font16 checkbtn" onclick="submitData()" value="确定">
+							<input type="reset" class="zi-btn btn-shadow fr border-rad3 font16 feedback" value="取消">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="zixu pr fixed-li">
+			<a class="btn-hide" target="_Blank" id="showIm">立即<br>咨询</a>
+		</div>
+		<div class="tel pr fixed-li">
+			<div class="btn-hide">电话<br>咨询</div>
+			<div class="hide-tel teal-cen font18">0791-87875683(办)</div>
+		</div>
+		<div class="ping pr fixed-li">
+			<div class="btn-hide">
+				<a style="font-size: 12px;color: #ffffff;line-height: 13px;">意见<br>反馈</a>
+			</div>
+		</div>
+		<div class="code pr fixed-li">
+			<div class="btn-hide">官方<br>微信</div>
+			<div class="hide-code bor-zi1">
+				<img src="{:getDoman()}/img/erweima.png" alt="微信公众号">
+			</div>
+		</div>
+	</div>
+	<div class="fan-top pr" onclick="fantop()">
+		<div class="btn-hide">返回<br>顶部</div>
+	</div>
+</div>
+<script>
+	$('#showIm').click(function(){
+		showIm();
+	})
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?90f54c2f676f3f41d32bbe694d5127bf";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?57ba4d2f63b144692a29b10a3cd5646a":"https://jspassport.ssl.qhimg.com/11.0.1.js?57ba4d2f63b144692a29b10a3cd5646a";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script>
+
+</body>
+</html>
+{/block}

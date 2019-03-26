@@ -1,0 +1,98 @@
+{extend name="layout/base" /}
+{block name="title"}{$category[0]['name']}自考专科/本科专业-安徽自考网{/block}
+{block name="keywords"}{$category[0]['name']}自考专科专业,{$category[0]['name']}自考本科专业,安徽自考网{/block}
+{block name="description"}{$category[0]['describe']}{/block}
+{block name="css"}
+	<link rel="stylesheet" href="{:getDoman()}/css/gong.css">
+	<link rel="stylesheet" href="{:getDoman()}/css/list_3.css">
+	<meta itemprop="image" content="{:getDoman()}/upload/images/20181128/f184a0c2ee3cf50781fbf7b81a563bb6.jpg"/>
+{/block}
+{block name="content"}
+<div id="yxjs_body">
+<div id="yx_weizhi">
+    <div id="yx_weizhi_1"></div>
+    <div id="yx_weizhi_2">当前位置：<a href="{:getDoman()}" class="blue" target="_self">安徽自考网</a>><a href="{:getDoman()}/school.html" target="_self">安徽自考本科院校</a>><a href="{:getDoman()}{:url('index/index/lanmu',['id'=>$category[0]['id']])}" target="_self">{$category[0]['name']}自考专业</a></div>
+</div>
+<div id="yxjs_top">
+	<div class="yxjs_top_box1">
+		<img src="{:getDoman()}/upload/images/20181128/f184a0c2ee3cf50781fbf7b81a563bb6.jpg" alt="{$category[0]['name']}招生专业" />
+	</div>
+	<div class="yxjs_top_box2">
+		<h1>{$category[0]['name']}自考专业</h1>
+		<p>{$category[0]['describe']}</p>
+	</div>
+</div>
+    <div id="yxjs_top_bottom" class="yxjs_top_bottom">
+        <div id="yxjs_top_bottom_left">
+            <ul>
+                <li><h2><a href="{:getDoman()}{:url('index/index/lanmu',['id'=>$category[0]['id']])}" target="_self" title="{$category[0]['name']}简介">学校主页</h2></a></li>
+                <li><h2><a href="{:getDoman()}{:url('index/index/tag',['id'=>2,'cate_id'=>$category[0]['id']])}" target="_self" title="{$category[0]['name']}自考招生简章">招生简章</h2></a></li>
+                <li class="x_color"><h2><a href="{:getDoman()}{:url('index/index/tag',['id'=>3,'cate_id'=>$category[0]['id']])}" target="_self" title="{$category[0]['name']}自考招生专业">招生专业</h2></a></li>
+                <li><h2><a href="{:getDoman()}/wsbm.html" title="{$category[0]['name']}自考网上报名">网上报名</h2></a></li>
+            </ul>
+        </div>
+        <div class="yxjs_top_bottom_center">
+            <div class="yx_list">
+                {notempty name="list" id="vo"}
+                    <ul class="lm_list">
+                        {volist name="list" id="vo"}
+                            <li>
+                                <a href="{:getDoman()}{:url('index/index/info',['id'=>$vo['id']])}" title="{$vo.name}">
+                                    <h3>{$category[0]['name']}{$vo.name}</h3>
+                                </a>
+                                <p class="mess-box">{$vo.describe}...</p>
+                            </li>
+                        {/volist}
+                    </ul>
+                    {$list->render()}
+                {/notempty}
+            </div>
+        </div>
+    </div>
+    {block name="right_menu"}{__block__}{/block}
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript" src="{:getDoman()}/js/index.js"></script>
+<script type="text/javascript" src="{:getDoman()}/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+    wordlimit('mess-box',100);
+	wordlimit('clnr1',12);
+    wordlimit('clnr2',8);
+        $.get("/getTestTime",{},function(result){
+
+		if(result!=null){
+			$(".getTestTime_date").html('考试时间:'+result.date1);
+			$("#getTestTimeDay").html(result.day1);
+		}
+    },'JSON');
+	
+	$.get("/registration_time",{},function(result){
+		if(result!=null){
+			$(".registration_time_date").html('报名时间:'+result.date);
+			$("#registrationDay").html(result.day);
+		}
+    },'JSON');
+</script>
+<script type="text/javascript">
+window.onload=
+    function(){
+        var oDiv = document.getElementById("yxjs_top_bottom_left"),
+            H = 0,
+            Y = oDiv        
+        while (Y) {
+            H += Y.offsetTop; 
+            Y = Y.offsetParent;
+        }
+        window.onscroll = function()
+        {
+            var s = document.body.scrollTop || document.documentElement.scrollTop
+            if(s>H) {
+                oDiv.style = "position:fixed;top:3px;"
+            } else {
+                oDiv.style = ""
+            }
+        }
+    }
+</script>
+{/block}

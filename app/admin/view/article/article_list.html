@@ -1,0 +1,156 @@
+<style type="text/css">
+  .category_select{
+    height: 31px;
+    font-size: 14px;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    margin-bottom: 0;
+  }
+
+</style>
+<div class="box">
+  <div class="box-header">
+    <ob_link><a class="btn" href="{:url('articleAdd')}"><i class="fa fa-plus"></i> 新 增</a></ob_link>
+    <a class="btn" href="{:url('static_all')}">整站静态化</a>
+    <form action="{:url('articleList')}" method="get" id="category_form" style="display: inline-block; margin-left: 2%; vertical-align:middle; ">
+      <label for="category">选择分类</label>
+      <select name="category" id="category" class="category_select">
+        <option value="">请选择搜索分类</option>
+        {volist name="cotegory" id="vo"}
+          <option value="{$vo.id}">{$vo.name}</option>
+        {/volist}
+      </select>
+      <select name="category1" id="category1" class="category_select">
+        <option value="" disabled>请选择搜索字类</option>
+      </select>
+      <select name="category2" id="category2" class="category_select">
+        <option disabled>请选择搜索子类</option>
+      </select>
+      <input type="button" value="搜索" class="btn category-search">
+    </form>
+    <div class="box-tools">
+
+        <div class="input-group input-group-sm search-form">
+            <input name="search_data" class="pull-right search-input" value="{:input('search_data')}" placeholder="支持标题|描述" type="text">
+            <div class="input-group-btn">
+              <button type="button" id="search" url="{:url('articlelist')}" class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+    <br/>
+  </div>
+  <div class="box-body table-responsive">
+    <table  class="table table-bordered table-hover">
+      <thead>
+      <tr>
+          <th class="checkbox-select-all">
+              <label>
+                <input class="flat-grey js-checkbox-all" type="checkbox">
+              </label>
+          </th>
+          <th>ID</th>
+          <th>标题</th>
+          <th>分类</th>
+          <!-- <th>封面</th> -->
+          <th>发布会员</th>
+          <th>发布时间</th>
+          <th class="sort-th">排序</th>
+          <th class="status-th">状态</th>
+          <th>操作</th>
+      </tr>
+      </thead>
+      
+      {notempty name='list'}
+        <tbody>
+            {volist name='list' id='vo'}
+                <tr>
+                  <td>
+                    <label>
+                        <input class="flat-grey" type="checkbox" name="ids" value="{$vo.id}">
+                    </label>
+                  </td>
+                  <td>{$vo.id}</td>
+                  <td><a href="{:getDoman()}/index.php/info/{$vo.id}.html" target="_blank">{$vo.name}</a></td>
+                  <td>{$vo.category_name}</td>
+                  <!-- <td>
+                      <img class="admin-list-img-size" src="{$vo.cover_id|get_picture_url}"/>
+                  </td> -->
+                  <td>{$vo.nickname}</td>
+                  <td>{$vo.create_time}</td>
+                  <td><input type="text" class="sort-th sort-text" href="{:url('setSort')}" id="{$vo.id}" value="{$vo.sort}" /></td>
+                  <td>
+                    <ob_link><a class="ajax-get" href="{:url('setStatus', array('ids' => $vo['id'], 'status' => (int)!$vo['status']))}">{$vo.status_text}</a></ob_link></td>
+                  <td class="col-md-2 text-center">
+                      <ob_link><a href="{:url('articleEdit', array('id' => $vo['id']))}" class="btn "><i class="fa fa-edit"></i> 编辑</a></ob_link>
+                      <ob_link><a class="btn confirm ajax-get" href="{:url('setStatus', array('ids' => $vo['id'], 'status' => $Think.DATA_DELETE))}"><i class="fa fa-trash-o"></i> 删 除</a></ob_link>
+                  </td>
+                </tr>
+            {/volist}
+        </tbody>
+        {else/}
+        <tbody><tr class="odd"><td colspan="8" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+      {/notempty}
+    </table>
+    {include file="layout/batch_btn_group"/}
+  </div>
+  <div class="box-footer clearfix text-center">
+      {$list->render()}
+  </div>
+</div>
+<script type="text/javascript">
+  
+  //判断是否选中
+  $("#category").change(function(){
+
+      var id = $(this).find('option:selected').val()
+      $("#category1").html("<option disabled>请选择搜索子类</option>");
+      $.post("{:url('article/getChildCategory')}",{id:id},function(data){
+        if(data.data != ''){
+            var html = ''
+            $.each(data.data,function(n,item){
+              html+="<option value="+item.id+">"+item.name+"</option>";
+            })
+          $("#category1").html(html);
+
+        }
+          
+      },'json')
+  })
+  $("#category1").change(function(){
+
+      var id = $(this).find('option:selected').val()
+      $("#category2").html("<option disabled>请选择搜索子类</option>");
+      $.post("{:url('article/getChildCategory')}",{id:id},function(data){
+        if(data.data != ''){
+            var html = ''
+            $.each(data.data,function(n,item){
+              html+="<option value="+item.id+">"+item.name+"</option>";
+            })
+          $("#category2").html(html);
+        }
+          
+      },'json')
+  })
+
+  $(".category-search").click(function(){
+      var category = $("#category").find('option:selected').val()
+      if(!category){
+        $("#category").attr("name",'');
+      }
+      var category1 = $("#category1").find('option:selected').val()
+      if(!category1){
+        $("#category1").attr("name",'');
+      }
+      var category2 = $("#category2").find('option:selected').val()
+      if(!category2){
+        $("#category2").attr("name",'');
+      }
+      $("#category_form").submit();
+  })  
+
+</script>

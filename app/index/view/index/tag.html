@@ -1,0 +1,48 @@
+{extend name="layout/base" /}
+{block name="title"}{$tagInfo.tag_name}-安徽自考网{/block}
+{block name="keywords"}{$tagInfo.tag_name},安徽自考网{/block}
+{block name="description"}安徽自考网服务广大考生提供安徽自学考试考网上报名、热门专业及报考院校,发布自学考试报名时间、成绩查询、历年真题及相关问答等资讯尽在安徽自考网...{/block}
+{block name="css"}
+	<link rel="stylesheet" href="{:getDoman()}/css/gong.css">
+	<link rel="stylesheet" href="{:getDoman()}/css/list_2.css">
+{/block}
+{block name="content"}
+<div id="list_weizhi">
+    <div id="list_weizhi_1"></div>
+    <div id="list_weizhi_2">当前位置：<a href="{:getDoman()}" class="blue" target="_self">安徽自考网</a>><a href="{:getDoman()}{:url('index/index/tag',['id'=>$tagInfo['tag_id']])}" target="_self">{$tagInfo.tag_name}</a></div>
+</div>
+<div id="list2_zhubox">
+    <div id="list2_zhubox_x">
+        {notempty name='list'} 
+        <div id="list2_zhubox_x_left">
+            <ul class="ul">
+                {volist name="list" id="vo"}
+                    <li>
+                        <div class="list2_zhubox_bt">
+                            <h2><a href="{:getDoman()}{:url('index/index/info',['id'=>$vo['id']])}">{$vo.name}</h2></a>
+                        	<span class="list2_zhubox_bt_sj">{$vo.add_time|mb_substr=0,10,'utf-8'}</span>
+                        </div>
+                        <p class="list2_zhubox_jj">
+                            <span class="content_box">{$vo.describe}</span>
+                            <span class="list2_zhubox_bt_ckxq"><a href="{:getDoman()}{:url('index/index/info',['id'=>$vo['id']])}">[查看详情]</a></span>
+                        </p>
+                    </li>
+                {/volist}
+            </ul>
+            <div class="page-render">
+            	{$list->render()}
+        	</div>
+        </div>
+        {/notempty}
+        {block name="right_menu"}{__block__}{/block}
+    </div>
+</div>
+{/block}
+{block name="script"}
+{__block__}
+<script type="text/javascript">
+    wordlimit('content_box',100);
+	wordlimit('clnr1',12);
+    wordlimit('clnr2',8);
+</script>
+{/block}
